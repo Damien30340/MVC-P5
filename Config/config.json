@@ -1,0 +1,16 @@
+{
+	"autoloadFolder": [
+		"Framework",
+		"Framework/Exception",
+		"Controller",
+		"Model/Entite",
+		"Model/Manager"
+	],
+	"database":  {
+            "dbname": "framework",
+            "host": "localhost",
+            "user": "root",
+            "password": ""
+    },
+	"basepath" : "/MVC-PHP"
+}
