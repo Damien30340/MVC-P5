@@ -3,7 +3,7 @@
 class UserController extends BaseController{
 
     public function login(){
-        var_dump($this->UserManager->getAll());
+        
         $this->view("login");
 
     }

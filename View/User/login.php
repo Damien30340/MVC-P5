@@ -5,3 +5,5 @@
 	<input type="password" name="password" />
 	<input type="submit" value="Se connecter" />
 </form>
+
+<?php var_dump($this->UserManager->getAll()); ?>

@@ -7,10 +7,10 @@
 		"Model/Manager"
 	],
 	"database":  {
-            "dbname": "",
-            "host": "",
-            "user": "",
+            "dbname": "framework",
+            "host": "localhost",
+            "user": "root",
             "password": ""
     },
-	"basepath" : "/MVC-P5"
+	"basepath" : "/MVC-p5"
 }
