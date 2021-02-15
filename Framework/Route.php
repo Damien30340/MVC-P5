@@ -14,6 +14,7 @@ class Route{
     private $_method; // La méthode utilisée, pas exemple : Get, POST
     private $_param; // Les paramètres envoyés (sous forme de variable par exemple)
     private $_manager; // Reçois le manager
+    private $_layout;
 
     public function __construct($route){
         $this->_path = $route->path;
@@ -22,6 +23,7 @@ class Route{
         $this->_method = $route->method;
         $this->_param = $route->param;
         $this->_manager = $route->manager;
+        $this->_layout = (!empty($route->layout)?$route->layout:"layout");
     }
 
     public function getPath(){ return $this->_path; }
@@ -30,6 +32,7 @@ class Route{
     public function getMethod(){ return $this->_method; }
     public function getParam(){ return $this->_param; }
     public function getManager(){ return $this->_manager; }
+    public function getLayout(){ return $this->_layout; }
 
     public function run($httpRequest, $config){
 
