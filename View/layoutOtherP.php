@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -56,13 +57,7 @@
 
 	<nav class="nav-menu">
 	  <ul>
-      <li class="active"><a href="/MVC-p5"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
-      <li><a href="#about"><i class="bx bx-user"></i> <span>A propos</span></a></li>
-      <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Résumé</span></a></li>
-      <li><a href="#portfolio"><i class="bx bx-book-content"></i>Créations</a></li>
-      <li><a href="#contact"><i class="bx bx-envelope"></i>Contact</a></li>
-      <li><a href="Posts"><i class="bx bx-news"></i>Posts</a></li>
-      <li><a href="Login"><i class="bx bxs-user-rectangle"></i>Se connecter</a></li>
+		  <li class="active"><a href="/MVC-p5"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
 	  </ul>
 	</nav><!-- .nav-menu -->
 	<button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
@@ -73,6 +68,8 @@
 <!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
+                                                <!--
+
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
   <div class="hero-container" data-aos="fade-in">
 	<h1>Damien Gobert</h1>
@@ -80,6 +77,7 @@
   </div>
 </section>
 
+                                                -->
 <!-- End Hero -->
 <main id="main">
 		<?= $content ?>
