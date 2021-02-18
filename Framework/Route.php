@@ -1,57 +1,153 @@
-<?php 
+<?php
+
 /** 
- * Class route qui récuperera les données de la class HttpRequest afin de d'en créer un objet
- * La class route permet de vérifier si les données récuperés sont valables et associés à une route
- * Les routes sont définies dans un fichier de configuration du dossier config/route.json et instanciés en objets
- * On ne doit pas pouvoir modifier les routes directement dans la class route par soucis de sécurité
-*/
+ * 
+ * Class of Framework : Route
+ *
+ * The class route contains the datas of the class httpRequest for create an object.
+ * This class must analyze the datas, checked if it is valid and associated with a route.
+ * The routes are define in a file of configuration of folder config/route.json and instanciate in objects.
+ * You must not be able to modify the routes directly in the class for the safety reasons
+ *
+ * @category Route
+ * @package  None
+ * @author   Damien Gobert <contact@damiengobert.fr>
+ */
 
-class Route{
+class Route
+{
 
-    private $_path; // Partie de l'url après le nom de domaine
-    private $_controller; // Type de controller à appeller
-    private $_action; // L'action du controller qui sera appellé
-    private $_method; // La méthode utilisée, pas exemple : Get, POST
-    private $_param; // Les paramètres envoyés (sous forme de variable par exemple)
-    private $_manager; // Reçois le manager
-    private $_layout;
+    /** Part of the url after domain name */
+    private $path;
+    /** name of the controller to be called */
+    private $controller;
+    /** name of the action to be called */
+    private $action;
+    /** name of the method to be called, example : GET, POST */
+    private $method;
+    /** name of the param to be called */
+    private $param;
+    /** name of the manager to be called */
+    private $manager;
+    /** name of the layour to be called */
+    private $layout;
 
-    public function __construct($route){
-        $this->_path = $route->path;
-        $this->_controller = $route->controller;
-        $this->_action = $route->action;
-        $this->_method = $route->method;
-        $this->_param = $route->param;
-        $this->_manager = $route->manager;
-        $this->_layout = (!empty($route->layout)?$route->layout:"layout");
+    /**
+     * The method construct initialize the propertys of this class
+     * @param object, $route
+     * @return void
+     */
+    public function __construct($route)
+    {
+        $this->path = $route->path;
+        $this->controller = $route->controller;
+        $this->action = $route->action;
+        $this->method = $route->method;
+        $this->param = $route->param;
+        $this->manager = $route->manager;
+        $this->layout = (!empty($route->layout) ? $route->layout : "layout");
     }
 
-    public function getPath(){ return $this->_path; }
-    public function getController(){ return $this->_controller; }
-    public function getAction(){ return $this->_action; }
-    public function getMethod(){ return $this->_method; }
-    public function getParam(){ return $this->_param; }
-    public function getManager(){ return $this->_manager; }
-    public function getLayout(){ return $this->_layout; }
+    /**
+     * The method getPath that must show property path
+     * 
+     * @param void
+     * @return string, $path
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 
-    public function run($httpRequest, $config){
+    /**
+     * The method getController that must show property controller
+     * 
+     * @param void
+     * @return string, $controller
+     */
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    /**
+     * The method getAction that must show property action
+     * 
+     * @param void
+     * @return string, $action
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * The method getMethod that must show property method
+     * 
+     * @param void
+     * @return string, $method
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * The method getParam that must show property param
+     * 
+     * @param void
+     * @return string, $param
+     */
+    public function getParam()
+    {
+        return $this->param;
+    }
+
+    /**
+     * The method getManager that must show property manager
+     * 
+     * @param void
+     * @return string, $manager
+     */
+    public function getManager()
+    {
+        return $this->manager;
+    }
+
+    /**
+     * The method getLayout that must show property layout
+     * 
+     * @param void
+     * @return string, $layout
+     */
+    public function getLayout()
+    {
+        return $this->layout;
+    }
+
+    /**
+     * The method initialize the controller with name controller
+     * 
+     * If the class controllerName exist, instanciate this same class in object
+     * Elseif, run exceptions
+     * 
+     * @param object, $httpRequest
+     * @param object, $config
+     * @return void
+     */
+    public function run($httpRequest, $config)
+    {
 
         $controller = null;
-        $controllerName = $this->_controller . "Controller";
-        if(class_exists($controllerName))
-        {
-            $controller = new $controllerName($httpRequest,$config);
-            if(method_exists($controller, $this->_action))
-            {
-                $controller->{$this->_action}(...$httpRequest->getParam());
-            }
-            else
-            {
+        $controllerName = $this->controller . "Controller";
+        if (class_exists($controllerName)) {
+            $controller = new $controllerName($httpRequest, $config);
+            if (method_exists($controller, $this->action)) {
+                $controller->{$this->action}(...$httpRequest->getParam());
+            } else {
                 throw new ActionNotFoundException();
             }
-        }
-        else
-        {
+        } else {
             throw new ControllerNotFoundException();
         }
     }

@@ -1,70 +1,129 @@
 <?php
+
 /**
- * Objet qui récupére le chemin de l'url afin qu'il soit transmis à la route
- * Il récupere l'url, la méthode (ex : Get ou post) via des variables SUPERGLOBAL de type $_SERVER
+ * Class of Framework : httpRequest
+ *
+ * The class httpRequest that must contains the informations of the URL, methods, params and the route
+ *
+ * @category HttpRequest
+ * @package  None
+ * @author   Damien Gobert <contact@damiengobert.fr>
  */
 
-class HttpRequest{
-    
-    private $_url; // Url
-    private $_method; // Méthode
-    private $_param; // Param associé
-    private $_route; // Permet d'enregistrer la route associé directement dans la proprièté de l'objet
+class HttpRequest
+{
 
-    public function __construct($url = null, $method = null){
-        $this->_url = (is_null($url))?$_SERVER['REQUEST_URI']:$url; // Recupération de l'url 
-        $this->_method = (is_null($method))?$_SERVER['REQUEST_METHOD']:$method; // Récupération de la méthode Get Post Put Delete
-        $this->_param = array();
+    /** Property that contains url */
+    private $url;
+    /** Property that contains method used */
+    private $method;
+    /** Property that contains the params */
+    private $param;
+    /** Property that contains the route associated under an object */
+    private $route;
+
+    /**
+     * The method construct that must recovery the url and method used.
+     * 
+     * Initialization propertys url, method, param. Param is an array.
+     * @param string, $url = null
+     * @param string, $method = null
+     * @return void
+     */
+    public function __construct($url = null, $method = null)
+    {
+        $this->url = (is_null($url)) ? $_SERVER['REQUEST_URI'] : $url; // Recupération de l'url 
+        $this->method = (is_null($method)) ? $_SERVER['REQUEST_METHOD'] : $method; // Récupération de la méthode Get Post Put Delete
+        $this->param = array();
     }
 
-    public function getUrl() { return $this->_url; }
-    public function getMethod() { return $this->_method; }
-    public function getParam() { return $this->_param; }
-    public function getRoute() { return $this->_route; }
-
-    public function setRoute($route){ // On enregistre l'objet route dans la proprièté route de httpRequest
-        $this->_route = $route; 
+    /**
+     * The method getUrl that must show property url
+     * 
+     * @param void
+     * @return string, $url
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
-    public function bindParam(){
-        /**
-         * Si dans la propriété route nous retrouvons l'url de httpRequest alors param array donnerais :
-         * ex : route/5 route[0] = route/5 et route[1] = 5
-         * l'index [0] correspond toujours à la regex complète
-         * [1] contiendra le résultat demander à la regex
-         */
-        switch($this->_method){
+    /**
+     * The method getMethod that must show property method
+     * 
+     * @param void
+     * @return string, $method
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * The method getParam that must show property param
+     * 
+     * @param void
+     * @return string, $param
+     */
+    public function getParam()
+    {
+        return $this->param;
+    }
+
+    /**
+     * The method getRoute that must show property route
+     * 
+     * @param void
+     * @return string, $route
+     */
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    /**
+     * The method saves an object route in property route of the class httpRequest
+     * @param object, $route is an object !! 
+     * @return void
+     */
+    public function setRoute($route)
+    {
+        $this->route = $route;
+    }
+
+    /**
+     * 
+     */
+    public function bindParam()
+    {
+        switch ($this->method) {
             case 'GET':
             case 'DELETE':
-                foreach($this->_route->getParam() as $param)
-                {
-                    if(isset($_GET[$param]))
-                    {
-                        $this->_param[] = $_GET[$param];
+                foreach ($this->route->getParam() as $param) {
+                    if (isset($_GET[$param])) {
+                        $this->param[] = $_GET[$param];
                     }
                 }
             case 'POST':
             case 'PUT':
-                foreach($this->_route->getParam() as $param)
-                {
-                    if(isset($_POST[$param]))
-                    {
-                        $this->_param[] = $_POST[$param];
+                foreach ($this->route->getParam() as $param) {
+                    if (isset($_POST[$param])) {
+                        $this->param[] = $_POST[$param];
                     }
                 }
         }
     }
 
-    public function run($config){
+    public function run($config)
+    {
 
         $this->bindParam();
         $this->_route->run($this, $config);
-
     }
 
-    public function addParam($value){
+    public function addParam($value)
+    {
 
         $this->_param[] = $value;
-
     }
 }

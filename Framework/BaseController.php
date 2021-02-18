@@ -1,89 +1,141 @@
 <?php
 
 /**
- * Class qui sera la base de tout controller
- * Elle récupere l'objet httpRequest qui lui même aura la route correspondante
- * Le controller permettra d'appeler la vue et de mettre en lien le model
+ * Class of Framework : Controller
+ *
+ * BaseController it's a controller for management others controller
+ * He puts in relation the manager and the view 
+ * - example : PostController extends BaseController
+ * This explains that when call PostController, this call the methods and propertys of BaseController
+ * In example, the PostController call PostManager, initialize the variables and send in view
+ * - $this->Manager->METHOD
+ * - Initialize variables
+ * - $this->view()
  * 
+ *
+ * @category Controller
+ * @package  None
+ * @author   Damien Gobert <contact@damiengobert.fr>
  */
 class BaseController
 {
 
-    protected $_httpRequest;
-    protected $_param;
-    protected $_config;
-    protected $_fileManager;
+    /*** $httpRequest must contains path of url */
+    protected $httpRequest;
+    /*** $param must contains the params names */
+    protected $param;
+    /*** $config must contains the config names */
+    protected $config;
+    /*** $filemanager contains the FileManager name */
+    protected $fileManager;
 
-
+    /**
+     * Method construct for initialization of controller
+     * 
+     * Initialization of propertys httprequest, config. Add array in the property param and add differents params
+     * with method addParam.
+     * Property FileManager create new Object FileManager 
+     * 
+     * @param $httpRequest
+     * @param $config
+     * 
+     * @return string
+     */
     public function __construct($httpRequest, $config)
     {
 
-        $this->_httpRequest = $httpRequest;
-        $this->_config = $config;
-        $this->_param = array();
-        $this->addParam("httprequest", $this->_httpRequest);
-        $this->addParam("config", $this->_config);
+        $this->httpRequest = $httpRequest;
+        $this->config = $config;
+        $this->param = array();
+        $this->addParam("httprequest", $this->httpRequest);
+        $this->addParam("config", $this->config);
         $this->bindManager();
-        $this->_fileManager = new FileManager();
+        $this->fileManager = new FileManager();
     }
 
+    /**
+     * Recovers if files exists, view, css and js files correspondence.
+     * 
+     * Recovers the files names for view, css and js.
+     * Buffering with function ob_start().
+     * Extract params.
+     * Inclusion view.
+     * Recovers content in a variable $content with function ob_get_clean(), delete buffering.
+     * Inclusion of layout correspondence with view.
+     * 
+     * @param $filename
+     * @return string
+     */
     protected function view($filename)
     {
-        /**
-         * Demande le nom du fichier,
-         * Ob Start = Mise en mémoire tampon de l'affichage
-         * extraction des params de la propriété,
-         * inclusion du fichier vue,
-         * initialisation du content avec effacement de la mémoire tampon => récupération dans la variable $content
-         * inclusion du layout
-         */
 
-        if (file_exists("View/" . $this->_httpRequest->getRoute()->getController() . "/css/" . $filename . ".css")) {
-            $this->addCss("View/" . $this->_httpRequest->getRoute()->getController() . "/css/" . $filename . ".css");
+        if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . "/css/" . $filename . ".css")) {
+            $this->addCss("View/" . $this->httpRequest->getRoute()->getController() . "/css/" . $filename . ".css");
         }
-        if (file_exists("View/" . $this->_httpRequest->getRoute()->getController() . "/js/" . $filename . ".js")) {
-            $this->addJs("View/" . $this->_httpRequest->getRoute()->getController() . "/js/" . $filename . ".js");
+        if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . "/js/" . $filename . ".js")) {
+            $this->addJs("View/" . $this->httpRequest->getRoute()->getController() . "/js/" . $filename . ".js");
         }
-        if (file_exists("View/" . $this->_httpRequest->getRoute()->getController() . '/' . $filename . ".php")) {
+        if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . '/' . $filename . ".php")) {
             ob_start();
-            extract($this->_param);
-            include("View/" . $this->_httpRequest->getRoute()->getController() . '/' . $filename . ".php");
+            extract($this->param);
+            include("View/" . $this->httpRequest->getRoute()->getController() . '/' . $filename . ".php");
             $content = ob_get_clean();
-            include("View/" . $this->_httpRequest->getRoute()->getLayout() . ".php");
+            include("View/" . $this->httpRequest->getRoute()->getLayout() . ".php");
         } else {
             throw new ViewNotFoundException();
         }
     }
 
+    /**
+     * Method this initialize and bind manager at controller
+     * 
+     * @param void
+     * @return object
+     */
     public function bindManager()
     {
 
-        foreach ($this->_httpRequest->getRoute()->getManager() as $manager) {
+        foreach ($this->httpRequest->getRoute()->getManager() as $manager) {
             $managerName = $manager . "Manager";
-            $this->$managerName = new $managerName($this->_config->database);
+            $this->$managerName = new $managerName($this->config->database);
         }
     }
 
+    /**
+     * Method for add differents param in controller for more range.
+     * 
+     * Method need name and value 
+     * @param $name
+     * @param $value
+     * @return string
+     */
     public function addParam($name, $value)
     {
-        /**
-         * Permettra d'ajouter un parametre à la liste des params
-         * avec un nom et une valeur
-         */
-        $this->_param[$name] = $value;
+
+        $this->param[$name] = $value;
     }
 
+    /**
+     * Method this add css file for view
+     * 
+     * @param $file
+     * @return string
+     */
     public function addCss($file)
     {
 
-        $this->_fileManager->addCssFile($file);
-        
+        $this->fileManager->addCssFile($file);
     }
 
+    /**
+     * Method this add js file for view
+     * 
+     * @param $file
+     * @return string
+     */
     public function addJs($file)
     {
 
-        $this->_fileManager->addJsFile($file);
-
+        $this->fileManager->addJsFile($file);
     }
 }
