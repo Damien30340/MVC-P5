@@ -1,5 +1,6 @@
 <?php
 
+
 $configFile = file_get_contents("Config/config.json"); // Récupération du fichier de config pour en faire une variable
 $config = json_decode($configFile); // Décodage du fichier .json
 
@@ -14,6 +15,7 @@ $config = json_decode($configFile); // Décodage du fichier .json
         }
     });
 
+    session_start();
 
     try
     {
