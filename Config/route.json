@@ -1,39 +1,291 @@
-[{
-	"path" : "/",
-	"controller" : "Home",
-	"action" : "Home",
-	"method" : "GET",
-	"param" : [],
-	"manager": []
-},
-{
-	"path" : "/Login",
-	"controller" : "User",
-	"action" : "Login",
-	"method" : "GET",
-	"param" : [],
-	"manager": [
-		"User"
-	]
-},
-{
-	"path" : "/Login",
-	"controller" : "User",
-	"action" : "Authenticate",
-	"method" : "POST",
-	"param" : [
-		"mail",
-		"password"
-	],
-	"manager": [
-		"User"
-	]
-},
-{
-	"path" : "/Error",
-	"controller" : "Error",
-	"action" : "show",
-	"method" : "GET",
-	"param" : [],
-	"manager": []
-}]
+[
+	{
+		"path": "/",
+		"controller": "Home",
+		"action": "Home",
+		"method": "GET",
+		"param": [],
+		"manager": [
+		"Folio"		]
+	},
+	{
+		"path": "/",
+		"controller": "Home",
+		"action": "Home",
+		"method": "POST",
+		"param": [],
+		"manager": []
+	},
+	{
+		"path": "/Portfolio&([0-9]*)",
+		"controller": "Home",
+		"action": "Portfolio",
+		"method": "GET",
+		"layout": "layoutPortfolio",
+		"param": [
+			"id"
+		],
+		"manager": [
+			"Folio"
+		]
+	},
+	{
+		"path": "/Posts",
+		"controller": "Post",
+		"action": "viewPosts",
+		"method": "GET",
+		"layout": "layoutBlog",
+		"param": [],
+		"manager": [
+			"Post",
+			"User"
+		]
+	},
+	{
+		"path": "/Post&([0-9]*)",
+		"controller": "Post",
+		"action": "viewPost",
+		"method": "GET",
+		"layout": "layoutBlogPost",
+		"param": [
+			"id"
+		],
+		"manager": [
+			"Post",
+			"Comment",
+			"User"
+		]
+	},
+	{
+		"path": "/Post&([0-9]*)",
+		"controller": "Comment",
+		"action": "create",
+		"method": "POST",
+		"layout": "layoutBlog",
+		"param": [
+			"idPost",
+			"mail",
+			"author",
+			"description"
+		],
+		"manager": [
+			"Comment",
+			"User"
+		]
+	},
+	{
+		"path": "/Register",
+		"controller": "User",
+		"action": "viewRegister",
+		"method": "GET",
+		"layout": "layoutBlog",
+		"param": [],
+		"manager": [
+			"User"
+		]
+	},
+	{
+		"path": "/Register",
+		"controller": "User",
+		"action": "register",
+		"method": "POST",
+		"layout": "layoutBlog",
+		"param": [
+			"mail",
+			"password",
+			"password2"
+		],
+		"manager": [
+			"User"
+		]
+	},
+	{
+		"path": "/Login",
+		"controller": "User",
+		"action": "viewLogin",
+		"method": "GET",
+		"layout": "layoutBlog",
+		"param": [],
+		"manager": [
+			"User"
+		]
+	},
+	{
+		"path": "/Login",
+		"controller": "User",
+		"action": "Login",
+		"method": "POST",
+		"layout": "layoutBlog",
+		"param": [
+			"mail",
+			"password"
+		],
+		"manager": [
+			"User"
+		]
+	},
+	{
+		"path": "/Disconnect",
+		"controller": "User",
+		"action": "disconnect",
+		"method": "GET",
+		"layout": "layoutBlog",
+		"param": [],
+		"manager": [
+			"User"
+		]
+	},
+	{
+		"path": "/Contact",
+		"controller": "Blog",
+		"action": "Contact",
+		"method": "GET",
+		"layout": "layoutBlog",
+		"param": [],
+		"manager": [
+			"User"
+		]
+	},
+	{
+		"path": "/Contact",
+		"controller": "Blog",
+		"action": "SendMessage",
+		"method": "POST",
+		"layout": "layoutBlog",
+		"param": [
+			"mail",
+			"title",
+			"content"
+		],
+		"manager": []
+	},
+	{
+		"path": "/Admin",
+		"controller": "User",
+		"action": "viewAdminDashboard",
+		"method": "GET",
+		"layout": "layoutAdmin",
+		"param": [],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&Posts",
+		"controller": "User",
+		"action": "viewAdminPosts",
+		"method": "GET",
+		"layout": "layoutAdmin",
+		"param": [],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&Posts",
+		"controller": "Post",
+		"action": "create",
+		"method": "POST",
+		"layout": "layoutAdmin",
+		"param": [
+			"title",
+			"content"
+		],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&deletePost",
+		"controller": "Post",
+		"action": "delete",
+		"method": "POST",
+		"layout": "layoutAdmin",
+		"param": [
+			"postId"
+		],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&Users",
+		"controller": "User",
+		"action": "viewAdminUsers",
+		"method": "GET",
+		"layout": "layoutAdmin",
+		"param": [],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&Comments",
+		"controller": "User",
+		"action": "viewAdminComments",
+		"method": "GET",
+		"layout": "layoutAdmin",
+		"param": [],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&acceptComment",
+		"controller": "Comment",
+		"action": "update",
+		"method": "POST",
+		"layout": "layoutAdmin",
+		"param": [
+			"commentId"
+		],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&deleteComment",
+		"controller": "Comment",
+		"action": "delete",
+		"method": "POST",
+		"layout": "layoutAdmin",
+		"param": [
+			"commentId"
+		],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Error",
+		"controller": "Error",
+		"action": "show",
+		"method": "GET",
+		"param": [],
+		"manager": []
+	}
+]
