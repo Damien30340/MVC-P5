@@ -42,6 +42,15 @@ class Router{
      */
     public function findRoute($httpRequest, $basepath){
         $url = str_replace($basepath, "", $httpRequest->getUrl());
+        /*if(preg_match("#([\/][A-Za-z]+)([\?])([a-z]+[\=])([0-9])#",$url))
+        {
+
+            $pattern = '#([\/][A-Za-z]+)([\?])([a-z]+[\=])([0-9])#';
+            $regex = preg_match($pattern, $url, $matches);
+
+            $url = $matches[1];
+        }*/
+
         $method = $httpRequest->getMethod();
         $routeFound = array_filter($this->listRoute, function($route) use($url, $method){
             return preg_match("#^" . $route->path . "$#", $url) && $route->method == $method;

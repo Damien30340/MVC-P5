@@ -31,6 +31,7 @@ class Route
     private $manager;
     /** name of the layour to be called */
     private $layout;
+    private $auth;
 
     /**
      * The method construct initialize the propertys of this class
@@ -39,6 +40,7 @@ class Route
      */
     public function __construct($route)
     {
+
         $this->path = $route->path;
         $this->controller = $route->controller;
         $this->action = $route->action;
@@ -46,6 +48,7 @@ class Route
         $this->param = $route->param;
         $this->manager = $route->manager;
         $this->layout = (!empty($route->layout) ? $route->layout : "layout");
+        $this->auth = (!empty($route->auth) ? $route->auth : null);
     }
 
     /**
@@ -137,13 +140,30 @@ class Route
      */
     public function run($httpRequest, $config)
     {
-
         $controller = null;
         $controllerName = $this->controller . "Controller";
         if (class_exists($controllerName)) {
             $controller = new $controllerName($httpRequest, $config);
             if (method_exists($controller, $this->action)) {
-                $controller->{$this->action}(...$httpRequest->getParam());
+                if ($this->auth != null) {
+                    if (!empty($_SESSION['user'])) {
+                        $auth = $controller->UserManager->privilege($_SESSION['user']->getListRole());
+                        if (in_array($this->auth, $auth) && $this->auth == "ADM") {
+                            $controller->countUser();
+                            $controller->countComment();
+                            $controller->countPost();
+                            $controller->{$this->action}(...$httpRequest->getParam());
+                        } elseif (in_array($this->auth, $auth) && $this->auth == "MBR") {
+                            $controller->{$this->action}(...$httpRequest->getParam());
+                        } else {
+                            throw new NoPrivilegeFoundException();
+                        }
+                    } else {
+                        throw new ConnexionNotFoundException();
+                    }
+                } else {
+                    $controller->{$this->action}(...$httpRequest->getParam());
+                }
             } else {
                 throw new ActionNotFoundException();
             }

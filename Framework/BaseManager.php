@@ -22,6 +22,7 @@ class BaseManager
     protected $object;
     /*** $bdd contains the bdd name */
     protected $bdd;
+    protected $debug;
 
 
     /**
@@ -32,14 +33,24 @@ class BaseManager
      * @param string, $bdd
      * @return void
      */
-    public function __construct($table, $object, $datasource)
+    public function __construct($table, $object, $config)
     {
 
         $this->table = $table;
         $this->object = $object;
-        $this->bdd = BDD::getInstance($datasource);
+        $this->bdd = BDD::getInstance($config->database);
+        $this->debug = $config->environement == "dev";
     }
 
+    public function count()
+    {
+        $req = $this->bdd->query("SELECT COUNT(*) FROM " . $this->table);
+        $return = $req->fetchColumn();
+        if ($this->debug && $req->errorInfo()[0] != "0") {
+            throw new Exception($req->errorInfo()[2]);
+        }
+        return $return;
+    }
     /*
     public function create($obj, $param){
 
@@ -68,8 +79,12 @@ class BaseManager
     {
 
         if (method_exists($obj, "getId")) {
-            $req = $this->bdd->prepare("DELETE FROM " . $this->table . "WHERE id = ?");
-            return $req->execute(array($obj->getId()));
+            $req = $this->bdd->prepare("DELETE FROM " . $this->table . " WHERE id = ?");
+            $return = $req->execute(array($obj->getId()));
+            if ($this->debug && $req->errorInfo()[0] != "0") {
+                throw new Exception($req->errorInfo()[2]);
+            }
+            return $return;
         } else {
             throw new MethodNotFoundException($this->object, "getId");
         }

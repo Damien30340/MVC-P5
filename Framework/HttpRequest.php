@@ -74,7 +74,7 @@ class HttpRequest
      * The method getRoute that must show property route
      * 
      * @param void
-     * @return string, $route
+     * @return Route, $route
      */
     public function getRoute()
     {
@@ -96,12 +96,22 @@ class HttpRequest
      */
     public function bindParam()
     {
+        $configFile = file_get_contents("Config/config.json"); // Récupération du fichier de config pour en faire une variable
+        $config = json_decode($configFile); // Décodage du fichier .json
+        $url = str_replace($config->basepath, "", $this->getUrl());
+
         switch ($this->method) {
             case 'GET':
             case 'DELETE':
                 foreach ($this->route->getParam() as $param) {
                     if (isset($_GET[$param])) {
                         $this->param[] = $_GET[$param];
+                    }
+                }
+                if (preg_match("#^" . $this->getRoute()->getPath() . "$#", $url, $params) > 0) {
+                    unset($params[0]);
+                    foreach ($params as $urlParam) {
+                        $this->param[] = $urlParam;
                     }
                 }
             case 'POST':
@@ -116,14 +126,12 @@ class HttpRequest
 
     public function run($config)
     {
-
         $this->bindParam();
-        $this->_route->run($this, $config);
+        $this->route->run($this, $config);
     }
 
     public function addParam($value)
     {
-
-        $this->_param[] = $value;
+        $this->param[] = $value;
     }
 }

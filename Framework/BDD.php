@@ -42,8 +42,13 @@ class BDD{
         $this->bdd = new PDO('mysql:dbname=' .$datasource->dbname. 
                              ';host=' .$datasource->host, 
                              $datasource->user, 
-                             $datasource->password);
+                             $datasource->password,
+                             array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
+    }
+
+    public function getLastId($table = null){
+        $this->bdd->lastInsertId($table);
     }
 
 }

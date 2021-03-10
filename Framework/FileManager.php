@@ -63,7 +63,7 @@ class FileManager
 
         $jsContent = '';
         foreach ($this->listJsFile as $jsFile) {
-            $jsContent = '<script language ="javascript" src ="' . $jsFile . '"></script>';
+            $jsContent = '<script src="' . $jsFile . '"></script>';
         }
         return $jsContent;
     }
@@ -77,7 +77,7 @@ class FileManager
     {
 
         $cssContent = '';
-        foreach ($this->_listCssFile as $cssFile) {
+        foreach ($this->listCssFile as $cssFile) {
             $cssContent = '<link rel="stylesheet" type="text/css" href="' . $cssFile . '"/>';
         }
         return $cssContent;

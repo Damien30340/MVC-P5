@@ -70,10 +70,15 @@ class BaseController
     {
 
         if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . "/css/" . $filename . ".css")) {
-            $this->addCss("View/" . $this->httpRequest->getRoute()->getController() . "/css/" . $filename . ".css");
+            $this->addCss("css/" . $filename . ".css");
+            $cssContent = $this->fileManager->generateCss();
+            $this->addParam("cssContent", $cssContent);
         }
         if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . "/js/" . $filename . ".js")) {
-            $this->addJs("View/" . $this->httpRequest->getRoute()->getController() . "/js/" . $filename . ".js");
+            $this->addJs("js/" . $filename . ".js");
+            $jsContent = $this->fileManager->generateJs();
+            $this->addParam("jsContent", $jsContent);
+
         }
         if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . '/' . $filename . ".php")) {
             ob_start();
@@ -97,7 +102,7 @@ class BaseController
 
         foreach ($this->httpRequest->getRoute()->getManager() as $manager) {
             $managerName = $manager . "Manager";
-            $this->$managerName = new $managerName($this->config->database);
+            $this->$managerName = new $managerName($this->config);
         }
     }
 
