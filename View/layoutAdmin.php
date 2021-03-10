@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,6 @@
     <meta name="description" content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
     <title>Dashboard Administration</title>
-    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="TemplateUser/assets/img/favicon.png">
     <!-- Custom CSS -->
@@ -18,6 +17,7 @@
     <link rel="stylesheet" href="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="TemplateAdmin/css/style.min.css" rel="stylesheet">
+    <?= (isset($cssContent) ? $cssContent : null) ?>
 </head>
 
 <body>
@@ -38,13 +38,13 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="TemplateAdmin/plugins/images/logo-icon.png" alt="homepage" />
+                            <img src="TemplateUser/assets/img/favicon.png" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="TemplateAdmin/plugins/images/logo-text.png" alt="homepage" />
+                            <img src="TemplateAdmin/plugins/images/logo-text2.png" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -79,6 +79,10 @@
                                     <i class="fa fa-search"></i>
                                 </a>
                             </form>
+                        </li>
+                        <a href="Disconnect">Se deconnecter</a>
+
+                        <li>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -156,7 +160,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ml-auto">
-                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="Admin">Dashboard</a></li>
                             </ol>
                         </div>
                     </div>
@@ -182,7 +186,7 @@
                                     <div id="sparklinedash"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-success">1</span></li>
+                                <li class="ml-auto"><span class="counter text-success"><?= $countPost ?></span></li>
                             </ul>
                         </div>
                     </div>
@@ -194,7 +198,7 @@
                                     <div id="sparklinedash2"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-purple">1</span></li>
+                                <li class="ml-auto"><span class="counter text-purple"><?= $countComment ?></span></li>
                             </ul>
                         </div>
                     </div>
@@ -206,7 +210,7 @@
                                     <div id="sparklinedash3"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-info">1</span>
+                                <li class="ml-auto"><span class="counter text-info"><?= $countUser ?></span>
                                 </li>
                             </ul>
                         </div>
@@ -222,7 +226,7 @@
                 <!-- ============================================================== -->
                 <!-- footer -->
                 <!-- ============================================================== -->
-                <footer class="footer text-center"> 2021 © damiengobert Admin by <a href="http://damiengobert.fr/">damiengobert.fr</a>
+                <footer class="footer text-center"> 2021 © damiengobert/Admin by <a href="http://damiengobert.fr/">Damien Gobert</a>
                 </footer>
                 <!-- ============================================================== -->
                 <!-- End footer -->
@@ -255,6 +259,7 @@
         <script src="TemplateAdmin/plugins/bower_components/chartist/dist/chartist.min.js"></script>
         <script src="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
         <script src="TemplateAdmin/js/pages/dashboards/dashboard1.js"></script>
+        <?= (isset($jsContent) ? $jsContent : null) ?>
 </body>
 
 </html>

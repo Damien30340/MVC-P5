@@ -10,12 +10,12 @@
 
     <div class="row">
       <div class="col-lg-4" data-aos="fade-right">
-        <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+        <img src="TemplateUser/assets/img/profile-img.jpg" class="img-fluid" alt="">
       </div>
       <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
         <h3>Développeur</h3>
         <p class="font-italic">
-          Fait preuve d’une grande motivation personnelle, organisé, curieux, aptitude d’écoute, compréhension. 
+          Fait preuve d’une grande motivation personnelle, organisé, curieux, aptitude d’écoute, compréhension.
         </p>
         <div class="row">
           <div class="col-lg-6">
@@ -334,26 +334,18 @@
 
     <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
-      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details1.html" title="More Details"><i class="bx bx-link"></i></a>
+      <?php foreach ($listFolio as $folio) { ?>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-<?= $folio->getCategorie() ?>">
+          <div class="portfolio-wrap">
+            <img src="TemplateUser/assets/img/portfolio/portfolio-<?= $folio->getId() ?>.jpg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="TemplateUser/assets/img/portfolio/portfolio-<?= $folio->getId() ?>.jpg" data-gall="portfolioGallery" class="venobox" title="<?= ucfirst($folio->getCategorie()) ?> <?= $folio->getId() ?>"><i class="bx bx-plus"></i></a>
+              <a href="Portfolio&<?= $folio->getId() ?>" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-      </div>
-  </div>
+      <?php } ?>
+    </div>
 </section><!-- End Portfolio Section -->
 
 <!-- ======= Contact Section ======= -->
@@ -368,30 +360,33 @@
     <div class="row" data-aos="fade-in">
 
       <!-- <div class="col-lg-5 d-flex align-items-stretch"> -->
-        <div class="info">
-          <div class="address">
-            <i class="icofont-google-map"></i>
-            <h4>Location:</h4>
-            <p>Ales, FR</p>
-          </div>
-
-          <div class="email">
-            <i class="icofont-envelope"></i>
-            <h4>Email:</h4>
-            <p>contact@damiengobert.fr</p>
-          </div>
-
-          <div class="phone">
-            <i class="icofont-phone"></i>
-            <h4>Call:</h4>
-            <p>(+336) 2435-0192</p>
-          </div>
-
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45823.57723633561!2d4.0554226515286524!3d44.125167151497045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4424287b7d8e3%3A0x4078821166b4830!2s30100%20Al%C3%A8s!5e0!3m2!1sfr!2sfr!4v1606375082955!5m2!1sfr!2sfr" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+      <div class="info">
+        <div class="address">
+          <i class="icofont-google-map"></i>
+          <h4>Location:</h4>
+          <p>Ales, FR</p>
         </div>
 
+        <div class="email">
+          <i class="icofont-envelope"></i>
+          <h4>Email:</h4>
+          <p>contact@damiengobert.fr</p>
+        </div>
+
+        <div class="phone">
+          <i class="icofont-phone"></i>
+          <h4>Call:</h4>
+          <p>(+336) 2435-0192</p>
+        </div>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45823.57723633561!2d4.0554226515286524!3d44.125167151497045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4424287b7d8e3%3A0x4078821166b4830!2s30100%20Al%C3%A8s!5e0!3m2!1sfr!2sfr!4v1606375082955!5m2!1sfr!2sfr" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+
+
+
+      </div>
+
       <!-- </div> -->
-      
+
       <!-------------------------------------------------- form suspension ------------------------------------------------
 
       <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
