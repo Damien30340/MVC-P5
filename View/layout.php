@@ -51,7 +51,7 @@
 	  <div class="social-links mt-3 text-center">
 		<a href="https://github.com/Damien30340/" target=_blank class="github"><i class="bx bxl-github"></i></a>
 		<a href="https://www.linkedin.com/in/damien-gobert-4b4381113/" target=_blank class="linkedin"><i class="bx bxl-linkedin"></i></a>
-    <a href="#" class="download"><i class="bx bx-download"></i></a>
+    <a href="Public/media/CV Dev symphony.pdf" target=_blank class="download"><i class="bx bx-download"></i></a>
 	  </div>
 	</div>
 
