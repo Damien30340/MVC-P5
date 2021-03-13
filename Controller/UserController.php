@@ -5,7 +5,7 @@ class UserController extends BaseController
 
     public function viewLogin()
     {
-        if (isset($_SESSION['user'])) {
+        if ($_SESSION['user']->getId() != 999) {
             $this->view("loginOpen");
         } else {
             $this->view("login");
@@ -24,6 +24,8 @@ class UserController extends BaseController
 
     public function viewAdminDashboard()
     {
+        $this->countAdmin();
+
         $this->listCommentsNoValid();
         $this->listUsers();
         $this->listPosts();
@@ -32,18 +34,24 @@ class UserController extends BaseController
 
     public function viewAdminPosts()
     {
+        $this->countAdmin();
+        
         $this->listPosts();
         $this->view("../Admin/posts");
     }
 
     public function viewAdminUsers()
     {
+        $this->countAdmin();
+        
         $this->listUsers();
         $this->view("../Admin/users");
     }
 
     public function viewAdminComments()
     {
+        $this->countAdmin();
+        
         $this->listComments();
         $this->view("../Admin/comment");
     }
@@ -81,8 +89,6 @@ class UserController extends BaseController
      */
     public function login($mail, $password)
     {
-        // $this->addCss("user.css"); exemple d'intégration d'un fichier css
-        // $this->addJs("user.js"); exemple d'intégration d'un fichier js
         if (empty($mail) || empty($password)) {
             $this->viewErrorLogin();
         } else {
@@ -132,22 +138,16 @@ class UserController extends BaseController
         $this->addParam("listCommentsNoValid", $listCommentsNoValid);
     }
 
-    public function countPost()
-    {
-        $countPost = $this->PostManager->count();
-        $this->addParam("countPost", $countPost);
-    }
-
-    public function countUser()
-    {
-        $countUser = $this->UserManager->count();
-        $this->addParam("countUser", $countUser);
-    }
-
-    public function countComment()
+    public function countAdmin()
     {
         $countComment = $this->CommentManager->count();
         $this->addParam("countComment", $countComment);
+
+        $countUser = $this->UserManager->count();
+        $this->addParam("countUser", $countUser);
+
+        $countPost = $this->PostManager->count();
+        $this->addParam("countPost", $countPost);
     }
 
     public function disconnect()

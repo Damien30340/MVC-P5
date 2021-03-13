@@ -77,7 +77,7 @@
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
   <div class="hero-container" data-aos="fade-in">
 	<h1>Damien Gobert</h1>
-	<p>Je suis <span class="typed" data-typed-items="Développeur, Expert CMS(Wordpress - Prestashop)"></span></p>
+	<p><span class="typed" data-typed-items="Je suis Développeur, Spécialisé PHP - Symphony, Expert CMS(Wordpress - Prestashop)"></span></p>
   </div>
 </section>
 

@@ -28,6 +28,7 @@ class BaseController
     protected $config;
     /*** $filemanager contains the FileManager name */
     protected $fileManager;
+    public $profil;
 
     /**
      * Method construct for initialization of controller
@@ -51,6 +52,13 @@ class BaseController
         $this->addParam("config", $this->config);
         $this->bindManager();
         $this->fileManager = new FileManager();
+        if (empty($_SESSION['user'])){
+            $this->profil = new User('999', 'viewer@damiengobert.fr', [(object) array("id" => "999", "name" => "viewer", "code" => "VW")]);
+            $this->addParam("profil", $this->profil);
+        } else {
+            $this->profil = $_SESSION['user'];
+            $this->addParam("profil", $this->profil);
+        }
     }
 
     /**
@@ -70,12 +78,12 @@ class BaseController
     {
 
         if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . "/css/" . $filename . ".css")) {
-            $this->addCss("css/" . $filename . ".css");
+            $this->addCss("View/" . $this->httpRequest->getRoute()->getController() . "/css/" . $filename . ".css");
             $cssContent = $this->fileManager->generateCss();
             $this->addParam("cssContent", $cssContent);
         }
         if (file_exists("View/" . $this->httpRequest->getRoute()->getController() . "/js/" . $filename . ".js")) {
-            $this->addJs("js/" . $filename . ".js");
+            $this->addJs("View/" . $this->httpRequest->getRoute()->getController() . "/js/" . $filename . ".js");
             $jsContent = $this->fileManager->generateJs();
             $this->addParam("jsContent", $jsContent);
 

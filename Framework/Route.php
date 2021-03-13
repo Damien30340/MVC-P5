@@ -48,7 +48,7 @@ class Route
         $this->param = $route->param;
         $this->manager = $route->manager;
         $this->layout = (!empty($route->layout) ? $route->layout : "layout");
-        $this->auth = (!empty($route->auth) ? $route->auth : null);
+        $this->auth = (!empty($route->auth) ? $route->auth : 'VW');
     }
 
     /**
@@ -145,24 +145,12 @@ class Route
         if (class_exists($controllerName)) {
             $controller = new $controllerName($httpRequest, $config);
             if (method_exists($controller, $this->action)) {
-                if ($this->auth != null) {
-                    if (!empty($_SESSION['user'])) {
-                        $auth = $controller->UserManager->privilege($_SESSION['user']->getListRole());
-                        if (in_array($this->auth, $auth) && $this->auth == "ADM") {
-                            $controller->countUser();
-                            $controller->countComment();
-                            $controller->countPost();
-                            $controller->{$this->action}(...$httpRequest->getParam());
-                        } elseif (in_array($this->auth, $auth) && $this->auth == "MBR") {
-                            $controller->{$this->action}(...$httpRequest->getParam());
-                        } else {
-                            throw new NoPrivilegeFoundException();
-                        }
-                    } else {
-                        throw new ConnexionNotFoundException();
-                    }
-                } else {
+                if ($controller->profil->checkRole($this->auth)){
+                    $_SESSION['user'] = $controller->profil;
+                    var_dump($_SESSION['user']);
                     $controller->{$this->action}(...$httpRequest->getParam());
+                } else {
+                    echo 'Vous essayer de vous connecter sans privilège';
                 }
             } else {
                 throw new ActionNotFoundException();

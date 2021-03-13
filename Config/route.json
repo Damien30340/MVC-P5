@@ -62,6 +62,7 @@
 		"action": "create",
 		"method": "POST",
 		"layout": "layoutBlog",
+		"auth": "MBR",
 		"param": [
 			"idPost",
 			"mail",

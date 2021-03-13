@@ -41,10 +41,11 @@ class UserManager extends BaseManager
         $user = $req->fetch();
 
         if (!empty($user)) {
-            $req = $this->bdd->prepare("SELECT idRole FROM userhasrole WHERE idUser = {$user->getId()}");
-            $req->execute();
+            $req = $this->bdd->prepare("SELECT roles.* FROM userhasrole INNER JOIN roles ON userhasrole.idRole = roles.id WHERE idUser = ?");
+            $req->execute(array($user->getId()));
 
-            $user->setListRole($req->fetch());
+            $req->setFetchMode(PDO::FETCH_OBJ);
+            $user->setListRole($req->fetchAll());
         }
 
         return $user;
