@@ -47,6 +47,15 @@ class PostController extends BaseController
         }
     }
 
+    public function viewPostAdmin($id)
+    {
+        $this->countAdmin();
+        $post = $this->PostManager->getByid($id);
+        $this->addParam("post", $post);
+        $this->view("../Admin/post");
+
+    }
+
     /**
      * The method create a new Post
      * 
@@ -85,6 +94,21 @@ class PostController extends BaseController
         $this->PostManager->delete($post);
         $this->addParam("id", $id);
         $this->view("../Admin/deletepost");
+    }
+
+    /**
+     * The method update Post
+     * 
+     * @param  string, $id => Post
+     * @return void
+     */
+    public function update($postId, $title, $content)
+    {
+        
+        $this->countAdmin();
+        $this->PostManager->update($postId, $title, $content);
+        $this->view("../Admin/updatePost");
+    
     }
 
     /**
