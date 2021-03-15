@@ -12,16 +12,23 @@
  */
 class FileManager
 {
-    /*** $listJsFile contains an array in method construct this contains the differents files js */
+    /***
+     * 
+     * $listJsFile contains an array in method construct this contains the differents files js 
+     */
     private $listJsFile;
-    /*** $listCssFile contains an array in method construct this contains the differents files css */
+    /***
+     * 
+     * $listCssFile contains an array in method construct this contains the differents files css 
+     */
     private $listCssFile;
 
     /**
      * Method construct for initialization of propertys $listJsFile and $listCssFile
      * 
      * Modification propertys for an array, if multiple js and css files
-     * @param void
+     *
+     * @param  void
      * @return array|array $listJsFile, $listCssFile
      */
     public function __construct()
@@ -33,8 +40,9 @@ class FileManager
 
     /**
      * Saves a file js that should be loaded into the view.
-     * @param string $file, the file at load in view.
-     * @return void
+     *
+     * @param  string $file, the file at load in view.
+     * @return object
      */
     public function addJsFile($file)
     {
@@ -44,8 +52,9 @@ class FileManager
     
     /**
      * Saves a file css that should be loaded into the view.
-     * @param string $file, the file at load in view
-     * @return void
+     *
+     * @param  string $file, the file at load in view
+     * @return object
      */
     public function addCssFile($file)
     {
@@ -55,8 +64,9 @@ class FileManager
 
     /**
      * Generates a variable that contains the script "javascript" to integrate into the view
-     * @param void
-     * @return string $jsContent, the script js to integrate into the view
+     *
+     * @param  void
+     * @return object $jsContent, the script js to integrate into the view
      */
     public function generateJs()
     {
@@ -70,8 +80,9 @@ class FileManager
 
     /**
      * Generates a variable that contains the script "css" to integrate into the view
-     * @param void
-     * @return string $cssContent, the script css to integrate into the view
+     *
+     * @param  void
+     * @return object $cssContent, the script css to integrate into the view
      */
     public function generateCss()
     {

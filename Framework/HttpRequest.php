@@ -13,21 +13,34 @@
 class HttpRequest
 {
 
-    /** Property that contains url */
+    /**
+     * 
+     * Property that contains url 
+     */
     private $url;
-    /** Property that contains method used */
+    /**
+     * 
+     * Property that contains method used 
+     */
     private $method;
-    /** Property that contains the params */
+    /**
+     * 
+     * Property that contains the params 
+     */
     private $param;
-    /** Property that contains the route associated under an object */
+    /**
+     * 
+     * Property that contains the route associated under an object 
+     */
     private $route;
 
     /**
      * The method construct that must recovery the url and method used.
      * 
      * Initialization propertys url, method, param. Param is an array.
-     * @param string, $url = null
-     * @param string, $method = null
+     *
+     * @param  string, $url    = null
+     * @param  string, $method = null
      * @return void
      */
     public function __construct($url = null, $method = null)
@@ -40,7 +53,7 @@ class HttpRequest
     /**
      * The method getUrl that must show property url
      * 
-     * @param void
+     * @param  void
      * @return string, $url
      */
     public function getUrl()
@@ -51,7 +64,7 @@ class HttpRequest
     /**
      * The method getMethod that must show property method
      * 
-     * @param void
+     * @param  void
      * @return string, $method
      */
     public function getMethod()
@@ -62,7 +75,7 @@ class HttpRequest
     /**
      * The method getParam that must show property param
      * 
-     * @param void
+     * @param  void
      * @return string, $param
      */
     public function getParam()
@@ -73,7 +86,7 @@ class HttpRequest
     /**
      * The method getRoute that must show property route
      * 
-     * @param void
+     * @param  void
      * @return Route, $route
      */
     public function getRoute()
@@ -83,7 +96,8 @@ class HttpRequest
 
     /**
      * The method saves an object route in property route of the class httpRequest
-     * @param object, $route is an object !! 
+     *
+     * @param  object, $route is an object !! 
      * @return void
      */
     public function setRoute($route)
@@ -101,26 +115,26 @@ class HttpRequest
         $url = str_replace($config->basepath, "", $this->getUrl());
 
         switch ($this->method) {
-            case 'GET':
-            case 'DELETE':
-                foreach ($this->route->getParam() as $param) {
-                    if (isset($_GET[$param])) {
-                        $this->param[] = $_GET[$param];
-                    }
+        case 'GET':
+        case 'DELETE':
+            foreach ($this->route->getParam() as $param) {
+                if (isset($_GET[$param])) {
+                    $this->param[] = $_GET[$param];
                 }
-                if (preg_match("#^" . $this->getRoute()->getPath() . "$#", $url, $params) > 0) {
-                    unset($params[0]);
-                    foreach ($params as $urlParam) {
-                        $this->param[] = $urlParam;
-                    }
+            }
+            if (preg_match("#^" . $this->getRoute()->getPath() . "$#", $url, $params) > 0) {
+                unset($params[0]);
+                foreach ($params as $urlParam) {
+                    $this->param[] = $urlParam;
                 }
-            case 'POST':
-            case 'PUT':
-                foreach ($this->route->getParam() as $param) {
-                    if (isset($_POST[$param])) {
-                        $this->param[] = $_POST[$param];
-                    }
+            }
+        case 'POST':
+        case 'PUT':
+            foreach ($this->route->getParam() as $param) {
+                if (isset($_POST[$param])) {
+                    $this->param[] = $_POST[$param];
                 }
+            }
         }
     }
 

@@ -1,7 +1,6 @@
 <?php
 
 /** 
- * 
  * Class of Framework : Route
  *
  * The class route contains the datas of the class httpRequest for create an object.
@@ -17,25 +16,47 @@
 class Route
 {
 
-    /** Part of the url after domain name */
+    /**
+     * 
+     * Part of the url after domain name 
+     */
     private $path;
-    /** name of the controller to be called */
+    /**
+     * 
+     * name of the controller to be called 
+     */
     private $controller;
-    /** name of the action to be called */
+    /**
+     * 
+     * name of the action to be called 
+     */
     private $action;
-    /** name of the method to be called, example : GET, POST */
+    /**
+     * 
+     * name of the method to be called, example : GET, POST 
+     */
     private $method;
-    /** name of the param to be called */
+    /**
+     * 
+     * name of the param to be called 
+     */
     private $param;
-    /** name of the manager to be called */
+    /**
+     * 
+     * name of the manager to be called 
+     */
     private $manager;
-    /** name of the layour to be called */
+    /**
+     * 
+     * name of the layour to be called 
+     */
     private $layout;
     private $auth;
 
     /**
      * The method construct initialize the propertys of this class
-     * @param object, $route
+     *
+     * @param  object, $route
      * @return void
      */
     public function __construct($route)
@@ -54,7 +75,7 @@ class Route
     /**
      * The method getPath that must show property path
      * 
-     * @param void
+     * @param  void
      * @return string, $path
      */
     public function getPath()
@@ -65,7 +86,7 @@ class Route
     /**
      * The method getController that must show property controller
      * 
-     * @param void
+     * @param  void
      * @return string, $controller
      */
     public function getController()
@@ -76,7 +97,7 @@ class Route
     /**
      * The method getAction that must show property action
      * 
-     * @param void
+     * @param  void
      * @return string, $action
      */
     public function getAction()
@@ -87,7 +108,7 @@ class Route
     /**
      * The method getMethod that must show property method
      * 
-     * @param void
+     * @param  void
      * @return string, $method
      */
     public function getMethod()
@@ -98,7 +119,7 @@ class Route
     /**
      * The method getParam that must show property param
      * 
-     * @param void
+     * @param  void
      * @return string, $param
      */
     public function getParam()
@@ -109,7 +130,7 @@ class Route
     /**
      * The method getManager that must show property manager
      * 
-     * @param void
+     * @param  void
      * @return string, $manager
      */
     public function getManager()
@@ -120,7 +141,7 @@ class Route
     /**
      * The method getLayout that must show property layout
      * 
-     * @param void
+     * @param  void
      * @return string, $layout
      */
     public function getLayout()
@@ -134,8 +155,8 @@ class Route
      * If the class controllerName exist, instanciate this same class in object
      * Elseif, run exceptions
      * 
-     * @param object, $httpRequest
-     * @param object, $config
+     * @param  object, $httpRequest
+     * @param  object, $config
      * @return void
      */
     public function run($httpRequest, $config)
@@ -145,9 +166,8 @@ class Route
         if (class_exists($controllerName)) {
             $controller = new $controllerName($httpRequest, $config);
             if (method_exists($controller, $this->action)) {
-                if ($controller->profil->checkRole($this->auth)){
+                if ($controller->profil->checkRole($this->auth)) {
                     $_SESSION['user'] = $controller->profil;
-                    var_dump($_SESSION['user']);
                     $controller->{$this->action}(...$httpRequest->getParam());
                 } else {
                     echo 'Vous essayer de vous connecter sans privilège';

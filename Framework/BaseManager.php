@@ -16,11 +16,20 @@ class BaseManager
 {
 
 
-    /*** $table contains the table name */
+    /***
+     * 
+     * $table contains the table name 
+     */
     protected $table;
-    /*** $object contains the objet name */
+    /***
+     * 
+     * $object contains the objet name 
+     */
     protected $object;
-    /*** $bdd contains the bdd name */
+    /***
+     * 
+     * $bdd contains the bdd name 
+     */
     protected $bdd;
     protected $debug;
 
@@ -28,9 +37,9 @@ class BaseManager
     /**
      * Method for construct an object with property : table name, object name, datasource name who is an instance of the class BDD
      * 
-     * @param string, $table
-     * @param object, $object
-     * @param string, $bdd
+     * @param  string, $table
+     * @param  object, $object
+     * @param  string, $bdd
      * @return void
      */
     public function __construct($table, $object, $config)
@@ -61,7 +70,7 @@ class BaseManager
 
     }
 
-*/
+    */
 
     /**
      * Method request delete sql
@@ -71,7 +80,7 @@ class BaseManager
      * If yes, then she's delete entry in the bdd,
      * if no correspondence then return an Exception
      * 
-     * @param obj
+     * @param  obj
      * @method string getId()
      * @return string
      */
@@ -95,7 +104,7 @@ class BaseManager
      * 
      * The request select all datas in the bdd
      * 
-     * @param void
+     * @param  void
      * @return string
      */
     public function getAll()
@@ -118,7 +127,8 @@ class BaseManager
      * The method need a one param, the id of the object.
      * If object id exist and it's correspondence with datas in the bdd,
      * then return datas
-     * @param id
+     *
+     * @param  id
      * @return string
      */
     public function getById($id)

@@ -14,19 +14,25 @@
  * @package  None
  * @author   Damien Gobert <contact@damiengobert.fr>
  */
-class Router{
+class Router
+{
     
-    /** Contains the list of the routes */
+    /**
+     * 
+     * Contains the list of the routes 
+     */
     private $listRoute;
 
     /**
      * The method read the file .json in Config/route.json
      * 
      * Initialization of the property listRoute with datas of the route.json
-     * @param void
+     *
+     * @param  void
      * @return void
      */
-    public function __construct(){
+    public function __construct()
+    {
         $stringRoute = file_get_contents('Config/route.json');
         $this->listRoute = json_decode($stringRoute);
     }
@@ -36,11 +42,12 @@ class Router{
      * 
      * If no route find, else return exceptions
      * 
-     * @param object, $httpRequest
-     * @param object, $basepath
+     * @param  object, $httpRequest
+     * @param  object, $basepath
      * @return object
      */
-    public function findRoute($httpRequest, $basepath){
+    public function findRoute($httpRequest, $basepath)
+    {
         $url = str_replace($basepath, "", $httpRequest->getUrl());
         /*if(preg_match("#([\/][A-Za-z]+)([\?])([a-z]+[\=])([0-9])#",$url))
         {
@@ -52,17 +59,17 @@ class Router{
         }*/
 
         $method = $httpRequest->getMethod();
-        $routeFound = array_filter($this->listRoute, function($route) use($url, $method){
-            return preg_match("#^" . $route->path . "$#", $url) && $route->method == $method;
-        });
+        $routeFound = array_filter(
+            $this->listRoute, function ($route) use ($url, $method) {
+                return preg_match("#^" . $route->path . "$#", $url) && $route->method == $method;
+            }
+        );
         $numberRoute = count($routeFound);
-        if($numberRoute > 1)
-        {
+        if($numberRoute > 1) {
             throw new MultipleRouteFoundException(); 
         } 
-        elseif($numberRoute == 0)
-        {
-           throw new NoRouteFoundException($httpRequest); 
+        elseif($numberRoute == 0) {
+            throw new NoRouteFoundException($httpRequest); 
         } 
         else 
         {
