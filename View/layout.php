@@ -26,7 +26,7 @@
 
   <!-- Template Main CSS File -->
   <link href="TemplateUser/assets/css/style.css" rel="stylesheet">
-  <?= (isset($cssContent) ? $cssContent : null) ?>
+  <?php echo (isset($cssContent) ? $cssContent : null) ?>
 
   <!-- =======================================================
   * Template Name: iPortfolio - v2.0.2
@@ -38,35 +38,35 @@
 
 <body>
 
-	  <!-- ======= Mobile nav toggle button ======= -->
-	  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+      <!-- ======= Mobile nav toggle button ======= -->
+      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
 
 <!-- ======= Header ======= -->
 <header id="header">
   <div class="d-flex flex-column">
 
-	<div class="profile">
-	  <img src="TemplateUser/assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-	  <h1 class="text-light"><a href="/MVC-p5">Damien Gobert</a></h1>
-	  <div class="social-links mt-3 text-center">
-		<a href="https://github.com/Damien30340/" target=_blank class="github"><i class="bx bxl-github"></i></a>
-		<a href="https://www.linkedin.com/in/damien-gobert-4b4381113/" target=_blank class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    <div class="profile">
+      <img src="TemplateUser/assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><a href="/MVC-p5">Damien Gobert</a></h1>
+      <div class="social-links mt-3 text-center">
+        <a href="https://github.com/Damien30340/" target=_blank class="github"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/damien-gobert-4b4381113/" target=_blank class="linkedin"><i class="bx bxl-linkedin"></i></a>
     <a href="Public/media/CV Dev symphony.pdf" target=_blank class="download"><i class="bx bx-download"></i></a>
-	  </div>
-	</div>
+      </div>
+    </div>
 
-	<nav class="nav-menu">
-	  <ul>
+    <nav class="nav-menu">
+      <ul>
       <li class="active"><a href="/MVC-p5"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
       <li><a href="#about"><i class="bx bx-user"></i> <span>A propos</span></a></li>
       <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Résumé</span></a></li>
       <li><a href="#portfolio"><i class="bx bx-book-content"></i>Créations</a></li>
       <li><a href="#contact"><i class="bx bx-envelope"></i>Contact</a></li>
-      <li><a href="Posts"><i class="bx bx-news"></i>Blog</a></li>
+      <li><a href="Posts&1"><i class="bx bx-news"></i>Blog</a></li>
       <li><a href="Contact" target=_blank><i class="bx bxs-envelope"></i>Contact</a></li>
-	  </ul>
-	</nav><!-- .nav-menu -->
-	<button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+      </ul>
+    </nav><!-- .nav-menu -->
+    <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
 
   </div>
 </header>
@@ -76,14 +76,14 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
   <div class="hero-container" data-aos="fade-in">
-	<h1>Damien Gobert</h1>
-	<p><span class="typed" data-typed-items="Je suis Développeur, Spécialisé PHP - Symphony, Expert CMS(Wordpress - Prestashop)"></span></p>
+    <h1>Damien Gobert</h1>
+    <p><span class="typed" data-typed-items="Je suis Développeur, Spécialisé PHP - Symphony, Expert CMS(Wordpress - Prestashop)"></span></p>
   </div>
 </section>
 
 <!-- End Hero -->
 <main id="main">
-		<?= $content ?>
+        <?php echo $content ?>
 </main>
 <!-- ======= Footer ======= -->
 <footer id="footer">
@@ -118,7 +118,7 @@
 
   <!-- Template Main JS File -->
   <script src="TemplateUser/assets/js/main.js"></script>
-  <?= (isset($jsContent) ? $jsContent : null) ?>
+  <?php echo (isset($jsContent) ? $jsContent : null) ?>
 
     </body>
 </html>

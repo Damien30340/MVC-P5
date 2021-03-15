@@ -54,20 +54,8 @@
   <div class="container">
       <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-              <form name="comment" action="Post&<?php echo $post->getId() ?>" method="post">
-                  <div class="input-group mb-3">
-                      <input type="hidden" value="<?php echo $idPost ?>" name="idPost" id="idPost">
-                      <input type="hidden" value="<?php echo (isset($_SESSION['user']) ? $_SESSION['user']->getMail() : null) ?>" name="mail" id="mail">
-                      <input type="text" class="form-control" placeholder="Votre pseudo" name="author" id="author">
-                      <div class="input-group-append"><span class="input-group-text" aria-label="pseudo">Pseudo</span></div>
-                  </div>
-                  <div class="input-group mb-3">
-                      <div class="input-group-prepend"><span class="input-group-text" aria-label="commentaire">commentaire</span></div>
-                      <input type="text" class="form-control" placeholder="Votre commentaire" name="description" id="description">
-                  </div>
-                  <button class="btn btn-primary" type="submit">Envoyer</button>
-              </form>
+              <p>Merci de vous connecter pour laisser un commentaire</p>
+              <a class="btn btn-primary" href="Login">Se connecter</a>
           </div>
       </div>
-  </div>
   </div>

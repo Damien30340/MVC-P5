@@ -20,7 +20,7 @@
 
   <!-- Custom styles for this template -->
   <link href="TemplateBlog/css/clean-blog.min.css" rel="stylesheet">
-  <?= (isset($cssContent) ? $cssContent : null) ?>
+  <?php echo (isset($cssContent) ? $cssContent : null) ?>
 
 </head>
 
@@ -40,10 +40,12 @@
             <a class="nav-link" href="http://localhost/MVC-p5/">Accueil</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link" href="Posts">Blog</a>
+           <a class="nav-link" href="Posts&1">Blog</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link" href="Login">Se connecter</a>
+          <?php if($_SESSION['user']->getId() == 999 ) { ?><a class="nav-link" href="Login">Se connecter</a> <?php 
+          } else {?><a class="nav-link" href="Login">Se deconnecter</a><?php 
+          } ?>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Me contacter</a>
@@ -57,7 +59,7 @@
 
                                             
 
-		<?= $content ?>
+        <?php echo $content ?>
 
 
 
@@ -104,7 +106,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="TemplateBlog/js/clean-blog.min.js"></script>
-  <?= (isset($jsContent) ? $jsContent : null) ?>
+  <?php echo (isset($jsContent) ? $jsContent : null) ?>
 
 </body>
 

@@ -26,7 +26,7 @@
 
   <!-- Template Main CSS File -->
   <link href="TemplateUser/assets/css/style.css" rel="stylesheet">
-  <?= (isset($cssContent) ? $cssContent : null) ?>
+  <?php echo (isset($cssContent) ? $cssContent : null) ?>
 
   <!-- Template Main CSS File -->
   <link href="TemplateUser/assets/css/style.css" rel="stylesheet">
@@ -79,7 +79,7 @@
 
   <!-- End Hero -->
   <main id="main">
-    <?= $content ?>
+    <?php echo $content ?>
   </main>
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -114,7 +114,7 @@
 
   <!-- Template Main JS File -->
   <script src="TemplateUser/assets/js/main.js"></script>
-  <?= (isset($jsContent) ? $jsContent : null) ?>
+  <?php echo (isset($jsContent) ? $jsContent : null) ?>
 
 </body>
 

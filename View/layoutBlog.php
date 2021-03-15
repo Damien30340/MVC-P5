@@ -22,7 +22,7 @@
 
   <!-- Custom styles for this template -->
   <link href="TemplateBlog/css/clean-blog.min.css" rel="stylesheet">
-  <?= (isset($cssContent) ? $cssContent : null) ?>
+  <?php echo (isset($cssContent) ? $cssContent : null) ?>
 
 </head>
 
@@ -42,10 +42,12 @@
             <a class="nav-link" href="http://localhost/MVC-p5/">Accueil</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link" href="Posts">Blog</a>
+            <a class="nav-link" href="Posts&1">Blog</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link" href="Login">Se connecter</a>
+            <?php if ($_SESSION['user']->getId() == 999) { ?><a class="nav-link" href="Login">Se connecter</a> <?php 
+            } else { ?><a class="nav-link" href="Login">Se deconnecter</a><?php 
+            } ?>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Contact">Me contacter</a>
@@ -70,57 +72,66 @@
     </div>
   </header>
 
-                                            
-
-		<?= $content ?>
 
 
+  <?php echo $content ?>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; <a href="https://damiengobert.fr/">Damien Gobert</a> 2021</p>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto" style="text-align: center;">
+        <?php if(isset($currentPage) && $currentPage > 1) { ?><a href="Posts&<?php echo $currentPage - 1 ?>"><img src="TemplateBlog/img/Arrow_preview.png" alt="Arrow next"></a><?php 
+        } ?>
+        <?php if(isset($currentPage) && $currentPage < $nbrPage) {?><a href="Posts&<?php echo $currentPage + 1 ?>"><img src="TemplateBlog/img/Arrow_next.png" alt="Arrow next"></a><?php 
+        } ?>
       </div>
     </div>
-  </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="TemplateBlog/vendor/jquery/jquery.min.js"></script>
-  <script src="TemplateBlog/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Custom scripts for this template -->
-  <script src="TemplateBlog/js/clean-blog.min.js"></script>
-  <?= (isset($jsContent) ? $jsContent : null) ?>
-  
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; <a href="https://damiengobert.fr/">Damien Gobert</a> 2021</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="TemplateBlog/vendor/jquery/jquery.min.js"></script>
+    <script src="TemplateBlog/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="TemplateBlog/js/clean-blog.min.js"></script>
+    <?php echo (isset($jsContent) ? $jsContent : null) ?>
+
 </body>
 
 </html>
