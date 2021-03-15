@@ -3,10 +3,11 @@
 class Post
 {
 
-    private  $id;
-    private  $title;
-    private  $content;
-    private  $creation_date;
+    private $id;
+    private $title;
+    private $chapo;
+    private $content;
+    private $creation_date;
 
 
     public function __construct()
@@ -21,6 +22,9 @@ class Post
     public function getTitle()
     {
         return $this->title;
+    }
+    public function getChapo(){
+        return $this->chapo;
     }
     public function getContent()
     {

@@ -13,19 +13,20 @@
                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/arijit.jpg" alt="user" class="img-circle">
                         </div>
                         <div class="mail-contnet">
-                            <h5>Damien Gobert</h5><span class="time"><?php echo $post->getFormatDate() ?></span>
+                            <h5>Damien Gobert</h5><span class="time"><?= $post->getFormatDate() ?></span>
                             <br>
                             <div class="mb-3 mt-3">
-                                Titre :<br><?php echo $post->getTitle() ?>
+                                Titre :<br><?= $post->getTitle() ?>
                             </div>
                             <div class="mb-3 mt-3">
-                                <span class="mail-desc"> Description :<br><?php echo $post->getContent() ?></span>
+                                <span class="mail-desc"> Description :<br><?= $post->getContent() ?></span>
                             </div>
 
                             <form action="Admin&deletePost" method="POST">
-                                <input type="hidden" id="postId" name="postId" value="<?php echo $post->getId() ?>" />
+                                <input type="hidden" id="postId" name="postId" value="<?= $post->getId() ?>" />
                                 <button class="btn-rounded btn btn-default btn-outline" type="submit"><i class="ti-close text-danger m-r-5"></i> Suprimer</button>
                             </form>
+                                <a href="Admin&updatePost&<?= $post->getId() ?>"><button class="btn-rounded btn btn-default btn-outline"><i class="text-danger m-r-5"></i> Modifier</button></a>
                         </div>
                     </div>
                 <?php } ?>

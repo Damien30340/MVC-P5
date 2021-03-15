@@ -56,6 +56,13 @@ class PostManager extends BaseManager
             throw new Exception($req->errorInfo()[2]);
         }
     }
+    public function update($id, $title, $content)
+    {
+        $req = $this->bdd->prepare("UPDATE posts SET title =:title, content =:content WHERE id =:id");
+        $req->execute(array('title' => $title,
+                            'content' => $content,
+                            'id' => $id));
+    }
 
     public function create($title, $content)
     {
