@@ -224,6 +224,40 @@
 		]
 	},
 	{
+		"path": "/Admin&updatePost&([0-9]*)",
+		"controller": "Post",
+		"action": "viewPostAdmin",
+		"method": "GET",
+		"layout": "layoutAdmin",
+		"param": [
+			"postId"
+		],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
+		"path": "/Admin&updatePost&([0-9]*)",
+		"controller": "Post",
+		"action": "update",
+		"method": "POST",
+		"layout": "layoutAdmin",
+		"param": [
+			"postId",
+			"title",
+			"content"
+		],
+		"auth": "ADM",
+		"manager": [
+			"User",
+			"Comment",
+			"Post"
+		]
+	},
+	{
 		"path": "/Admin&Users",
 		"controller": "User",
 		"action": "viewAdminUsers",
