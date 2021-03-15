@@ -25,9 +25,7 @@ class UserManager extends BaseManager
         if ($this->debug && $req->errorInfo()[0] != "0") {
             throw new Exception($req->errorInfo()[2]);
         }
-        /*$id = $this->bdd->getLastId();
-        $req = $this->bdd->prepare("INSERT INTO userhasrole(userId, roleId) VALUE(?, 1)");
-        $return = $req->execute(array($id));*/
+        
         return $return;
     }
 
@@ -49,15 +47,6 @@ class UserManager extends BaseManager
         }
 
         return $user;
-
-    }
-
-    public function privilege($role){
-
-        $req = $this->bdd->prepare("SELECT code FROM roles WHERE id = ?");
-        $req->execute(array($role[0]));
-        
-        return $req->fetch();
 
     }
 }

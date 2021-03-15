@@ -10,14 +10,15 @@ class User
 
     public function __construct($id = null, $mail = null, $listRole = null)
     {
-        if($id != null){
+        if($id != null) {
             $this->id = $id;
             $this->mail = $mail;
             $this->listRole = $listRole;
         }
     }
 
-    public function getListRole(){
+    public function getListRole()
+    {
         return $this->listRole;
     }
     public function getId()
@@ -32,10 +33,12 @@ class User
     {
         return $this->password;
     }
-    public function getAdmin(){
+    public function getAdmin()
+    {
         return $this->admin;
     }
-    public function getCode(){
+    public function getCode()
+    {
         return $this->code;
     }
     public function setId($id)
@@ -44,7 +47,8 @@ class User
     }
 
 
-    public function setListRole($role){
+    public function setListRole($role)
+    {
         $this->listRole = $role;
     }
     public function setMail($mail)
@@ -55,10 +59,13 @@ class User
     {
         $this->password = $password;
     }
-    public function checkRole($auth){
-        $result = array_filter($this->listRole, function($role) use($auth){
-            return $role->code==$auth;
-        });
+    public function checkRole($auth)
+    {
+        $result = array_filter(
+            $this->listRole, function ($role) use ($auth) {
+                return $role->code==$auth;
+            }
+        );
         return count($result)==1;
     }
 }

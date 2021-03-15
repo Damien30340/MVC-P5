@@ -27,7 +27,8 @@ class CommentManager extends BaseManager
         $req->execute();
     }
 
-    public function getByValid(){
+    public function getByValid()
+    {
         $req = $this->bdd->prepare("SELECT * FROM comments WHERE valid is null");
         $result = $req->execute();
         if ($result) {
@@ -51,8 +52,9 @@ class CommentManager extends BaseManager
         }
     }
 
-    public function getByIdPost($idPost){
-        $req = $this->bdd->prepare("SELECT * FROM comments WHERE idPost = {$idPost} AND valid = 1" );
+    public function getByIdPost($idPost)
+    {
+        $req = $this->bdd->prepare("SELECT * FROM comments WHERE idPost = {$idPost} AND valid = 1");
         $result = $req->execute();
         if ($result) {
             $req->setFetchMode(PDO::FETCH_CLASS, "Comment");
