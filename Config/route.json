@@ -30,12 +30,14 @@
 		]
 	},
 	{
-		"path": "/Posts",
+		"path": "/Posts&([0-9]*)",
 		"controller": "Post",
 		"action": "viewPosts",
 		"method": "GET",
 		"layout": "layoutBlog",
-		"param": [],
+		"param": [
+			"idPage"
+		],
 		"manager": [
 			"Post",
 			"User"

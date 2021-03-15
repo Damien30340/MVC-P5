@@ -1,8 +1,26 @@
 <?php
 
+/**
+ * Class of application : UserController extends BaseController
+ *
+ * UserController extends BaseController of Framework
+ * He puts in relation the manager and the view in associate with users
+ *
+ * @category Controller
+ * @package  Framework
+ * @author   Damien Gobert <contact@damiengobert.fr>
+ */
 class UserController extends BaseController
 {
 
+    /**
+     * The method show view Login
+     * 
+     * With condition if session exists and are not session visitor
+     *
+     * @param  void
+     * @return void
+     */
     public function viewLogin()
     {
         if ($_SESSION['user']->getId() != 999) {
@@ -12,16 +30,27 @@ class UserController extends BaseController
         }
     }
 
+    /**
+     * The method show view register
+     * 
+     * @param  void
+     * @return void
+     */
     public function viewRegister()
     {
         $this->view("register");
     }
 
-    public function viewErrorLogin()
-    {
-        $this->view("errorLogin");
-    }
-
+    /**
+     * The method show view Admin dashboard
+     * 
+     * Call the method countAdmin for display
+     * view => ../Admin/dashboard for exit folder User and open Admin folder
+     * If users add new comment, they are show in view
+     *
+     * @param  void
+     * @return void
+     */
     public function viewAdminDashboard()
     {
         $this->countAdmin();
@@ -31,37 +60,70 @@ class UserController extends BaseController
         $this->listPosts();
         $this->view("../Admin/dashboard");
     }
-
+    /**
+     * The method show view Admin list posts
+     * 
+     * Call the method countAdmin for display
+     * view => ../Admin/posts for exit folder User and open Admin folder
+     *
+     * @param  void
+     * @return void
+     */
     public function viewAdminPosts()
     {
         $this->countAdmin();
-        
+
         $this->listPosts();
         $this->view("../Admin/posts");
     }
-
+    /**
+     * The method show view Admin list users
+     * 
+     * Call the method countAdmin for display
+     * view => ../Admin/users for exit folder User and open Admin folder
+     *
+     * @param  void
+     * @return void
+     */
     public function viewAdminUsers()
     {
         $this->countAdmin();
-        
+
         $this->listUsers();
         $this->view("../Admin/users");
     }
-
+    /**
+     * The method show view Admin list comments
+     * 
+     * Call the method countAdmin for display
+     * view => ../Admin/comments for exit folder User and open Admin folder
+     *
+     * @param  void
+     * @return void
+     */
     public function viewAdminComments()
     {
         $this->countAdmin();
-        
+
         $this->listComments();
         $this->view("../Admin/comment");
     }
-
+    /**
+     * The method save the new user and show view associate
+     * 
+     * Call the method countAdmin for display
+     * view => ../Admin/posts for exit folder User and open Admin folder
+     * password hash with the method password_hash and control datas with htmlspecialchars
+     *
+     * @param  string, $mail, $password, $password2
+     * @return void
+     */
     public function register($mail, $password, $password2)
     {
 
         if (empty($mail) || empty($password)) {
-            $this->viewErrorLogin();
-        } elseif($password == $password2) {
+            $this->view('errorLogin');
+        } elseif ($password == $password2) {
             $userMail = htmlspecialchars($mail);
             $userPassword = htmlspecialchars($password);
 
@@ -84,13 +146,13 @@ class UserController extends BaseController
      * If the object user is an admin => show view Admin.
      * If not correspondance with bdd => show errorLogin
      *  
-     * @param void
-     * @return void
+     * @param  string, $mail, $password
+     * @return object, $user => $_SESSION['user']
      */
     public function login($mail, $password)
     {
         if (empty($mail) || empty($password)) {
-            $this->viewErrorLogin();
+            $this->view('errorLogin');
         } else {
             $userMail = htmlspecialchars($mail);
             $userPassword = htmlspecialchars($password);
@@ -111,33 +173,64 @@ class UserController extends BaseController
                 }
             }
         }
-        $this->viewErrorLogin();
+        $this->view('errorLogin');
     }
 
+    /**
+     * The method list the posts
+     * 
+     * @param  void 
+     * @return object, $list posts for admin display = no pagination
+     */
     public function listPosts()
     {
-        $listPosts = $this->PostManager->getAllPost();
+        $listPosts = $this->PostManager->getAllPostAdm();
         $this->addParam("listPosts", $listPosts);
     }
 
+    /**
+     * The method list users
+     * 
+     * @param  void
+     * @return object, $list users for admin display
+     */
     public function listUsers()
     {
         $listUsers = $this->UserManager->getAll();
         $this->addParam("listUsers", $listUsers);
     }
-
+    /**
+     * The method list comments
+     * 
+     * @param  void
+     * @return object, $list comments for admin display
+     */
     public function listComments()
     {
         $listComments = $this->CommentManager->getAll();
         $this->addParam("listComments", $listComments);
     }
 
+    /**
+     * The method list comments no valide
+     * 
+     * @param  void
+     * @return object, $list comments no valid for admin display
+     */
     public function listCommentsNoValid()
     {
         $listCommentsNoValid = $this->CommentManager->getByValid();
         $this->addParam("listCommentsNoValid", $listCommentsNoValid);
     }
 
+    /**
+     * The method call 3 methods for count users, posts and comments.
+     * 
+     * It's for the admin display (LayoutAdmin)
+     *
+     * @param  void
+     * @return void
+     */
     public function countAdmin()
     {
         $countComment = $this->CommentManager->count();
@@ -150,6 +243,13 @@ class UserController extends BaseController
         $this->addParam("countPost", $countPost);
     }
 
+    /**
+     * The method disconnect the users
+     * destroy session
+     * 
+     * @param  void
+     * @return void
+     */
     public function disconnect()
     {
         session_destroy();

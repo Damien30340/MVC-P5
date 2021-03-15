@@ -19,54 +19,102 @@ class PostController extends BaseController
      * 
      * Recovery the datas in a list of posts, add the datas with method addParam of BaseController.
      * Call the method view with param name of view for show the datas and the view.
-     * @param void
-     * @return void
+     *
+     * @param  string, $idPage for pagination
+     * @return object, list 
      */
-    public function viewPosts($vue = "listPosts")
+    public function viewPosts($idPage)
     {
-
-        $this->listPosts();
-        $this->listComments();
-        $this->view($vue);
+        $this->listPostsMbr($idPage);
+        $this->view('listPosts');
     }
 
-    public function viewPost($id){
-
+    /**
+     * The method show view associate in post per id
+     * 
+     * @param  string, $id Post
+     * @return object
+     */
+    public function viewPost($id)
+    {
         $this->post($id);
-        $this->view("post");
+        $obj = $_SESSION['user']->getListRole();
+        $tab = json_decode(json_encode($obj), true);
+        if (in_array("MBR", $tab[0])) {
+            $this->view("post");
+        } else {
+            $this->view("postViewer");
+        }
     }
 
     /**
      * The method create a new Post
      * 
+     * For Admin, the user members or visitors has not access 
      * Call the manager Post and the method create for integrate in bdd
-     * @param string, $title of post
-     * @param string, $content of post
+     *
+     * @param  string, $title   of post
+     * @param  string, $content of post
      * @return void
      */
     public function create($title, $content)
     {
+        $this->countAdmin();
         $textNewPost = "Nouvelle entrée dans la bdd enregistrée !";
 
-        $this->listPosts();
+        $this->listPostsAdm();
         $this->PostManager->create($title, $content);
         $this->addParam("textNewPost", $textNewPost);
 
-        $this->viewPosts("../Admin/posts");    
+        $this->view("../Admin/posts");
     }
 
+    /**
+     * The method delete a Post per id
+     * 
+     * For Admin, the user members of visitors has not access
+     * Call the manager post and delete with condition where id
+     * 
+     * @param  string, $id post
+     * @return void
+     */
     public function delete($id)
     {
-        
-       
+        $this->countAdmin();
         $post = $this->PostManager->getById($id);
         $this->PostManager->delete($post);
         $this->addParam("id", $id);
         $this->view("../Admin/deletepost");
     }
 
-    public function Post($id){
+    /**
+     * The method call 3 methods for count users, posts and comments.
+     * 
+     * It's for the admin display (LayoutAdmin)
+     *
+     * @param  void
+     * @return void
+     */
+    public function countAdmin()
+    {
+        $countComment = $this->CommentManager->count();
+        $this->addParam("countComment", $countComment);
 
+        $countUser = $this->UserManager->count();
+        $this->addParam("countUser", $countUser);
+
+        $countPost = $this->PostManager->count();
+        $this->addParam("countPost", $countPost);
+    }
+
+    /**
+     * The method initialize the post with id Post and comments associate
+     * 
+     * @param  string, $id Post
+     * @return object, $listcomment and $post
+     */
+    public function Post($id)
+    {
         $listComment = $this->CommentManager->getByIdPost($id);
         $post = $this->PostManager->getById($id);
         $idPost = $post->getId();
@@ -75,29 +123,79 @@ class PostController extends BaseController
         $this->addParam("listComment", $listComment);
     }
 
-    public function listPosts()
+    /**
+     * The method return list post for members and visitors display
+     * 
+     * @param  string, $idPage
+     * @return object, $list post
+     */
+    public function listPostsMbr($idPage)
     {
-        $listPosts = $this->PostManager->getAllPost();
+        $currentPage = $idPage;
+        $result = $this->PostManager->getAllPage();
+
+        // Recovery result for nbr of pages
+        $postsPerPage = 5;
+        $nbrPage = ceil(intval($result[0]) / $postsPerPage);
+
+        $listPosts = $this->PostManager->getAllPostMbr($currentPage);
+        $this->addParam("listPosts", $listPosts);
+        $this->addParam("currentPage", $currentPage);
+        $this->addParam("nbrPage", $nbrPage);
+    }
+    /**
+     * The method initialize the data for admin view
+     * 
+     * @param  void
+     * @return object, $list posts 
+     */
+    public function listPostsAdm()
+    {
+        $listPosts = $this->PostManager->getAllPostAdm();
         $this->addParam("listPosts", $listPosts);
     }
 
-    public function listComments(){
+    /**
+     * The method initialize the comments datas for post view
+     * 
+     * @param  void
+     * @return object, $list comments
+     */
+    public function listComments()
+    {
         $listComments = $this->PostManager->getAllComment();
         $this->addParam("listComments", $listComments);
     }
 
+    /**
+     * Count post for admin display
+     * 
+     * @param void
+     * @param void
+     */
     public function countPost()
     {
         $countPost = $this->PostManager->count();
         $this->addParam("countPost", $countPost);
     }
 
+    /**
+     * Count user for admin display
+     * 
+     * @param void
+     * @param void
+     */
     public function countUser()
     {
         $countUser = $this->UserManager->count();
         $this->addParam("countUser", $countUser);
     }
-
+    /**
+     * Count comment for admin display
+     * 
+     * @param void
+     * @param void
+     */
     public function countComment()
     {
         $countComment = $this->CommentManager->count();

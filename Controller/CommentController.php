@@ -24,10 +24,11 @@ class CommentController extends BaseController
      * The method create a new Post
      * 
      * Call the manager Post and the method create for integrate in bdd
-     * @param string, $idPost of post
-     * @param string, $mail of user
-     * @param string, $author of comment
-     * @param string, $description of comment
+     *
+     * @param  string, $idPost      of post
+     * @param  string, $mail        of user
+     * @param  string, $author      of comment
+     * @param  string, $description of comment
      * @return void
      */
     public function create($idPost, $mail, $author, $description)
@@ -35,7 +36,7 @@ class CommentController extends BaseController
         $author = htmlspecialchars($author);
         $description = htmlspecialchars($description);
         if (isset($_SESSION['user'])) {
-            if(!empty($author) && !empty($description)){
+            if(!empty($author) && !empty($description)) {
                 $this->CommentManager->create($idPost, $mail, $author, $description);
                 $this->view("sendComment");
             } else {
@@ -48,32 +49,52 @@ class CommentController extends BaseController
         }
     }
 
+    /**
+     * The method delete a post select from admin page
+     * 
+     * @param  string, $id => Post
+     * @return void
+     */
     public function delete($id)
     {
+        $this->countAdmin();
         $comment = $this->CommentManager->getById($id);
         $this->addParam("comment", $comment);
         $this->CommentManager->delete($comment);
-        $this->view("deleteComment");
+        $this->view("../Admin/deleteComment");
+    }
+
+    public function countAdmin()
+    {
+        $countComment = $this->CommentManager->count();
+        $this->addParam("countComment", $countComment);
+
+        $countUser = $this->UserManager->count();
+        $this->addParam("countUser", $countUser);
+
+        $countPost = $this->PostManager->count();
+        $this->addParam("countPost", $countPost);
     }
 
     /**
      * The method update Comment
      * 
-     * @param string, $id => comment
+     * @param  string, $id => Comment
      * @return void
      */
     public function update($id)
     {
+        $this->countAdmin();
         $this->CommentManager->update($id);
         $comment = $this->CommentManager->getById($id);
         $this->addParam("comment", $comment);
-        $this->view("updateComment");
+        $this->view("../Admin/updateComment");
     }
 
     /**
      * The method initialize array with a list of the comments
      * 
-     * @param void
+     * @param  void
      * @return array, $listComment
      */
     public function listComments()
