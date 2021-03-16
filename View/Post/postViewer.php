@@ -37,13 +37,13 @@
               <?php foreach ($listComment as $comment) { ?>
                   <div class="post-subtitle">
                       <h4 class="post-title">
-                          <?php echo $comment->getAuthor() ?>
+                          <?= $comment->getAuthor() ?>
                       </h4>
                       <p>
-                          <?php echo $comment->getDescription() ?>
+                          <?= $comment->getDescription() ?>
                       </p>
                       <p class="post-meta">Publié le
-                          <?php echo $comment->getFormatDate() ?>
+                          <?= $comment->getFormatDate() ?>
                       </p>
                   </div>
                   <hr>

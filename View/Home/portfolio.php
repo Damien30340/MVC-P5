@@ -20,19 +20,19 @@
         <div class="portfolio-details-container">
 
             <div class="owl-carousel portfolio-details-carousel">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?php echo $folio->getId() ?>-1.jpg" class="img-fluid" alt="">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?php echo $folio->getId() ?>-2.jpg" class="img-fluid" alt="">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?php echo $folio->getId() ?>-3.jpg" class="img-fluid" alt="">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= $folio->getId() ?>-1.jpg" class="img-fluid" alt="">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= $folio->getId() ?>-2.jpg" class="img-fluid" alt="">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= $folio->getId() ?>-3.jpg" class="img-fluid" alt="">
             </div>
 
             <div class="portfolio-info">
                 <h3>Information :</h3>
                 <ul>
                     <li></li>
-                    <li><strong>Catégorie</strong>: <?php echo $categorie ?></li>
-                    <li><strong>Client</strong>: <?php echo $folio->getClient() ?></li>
-                    <li><strong>Date du projet</strong>: <?php echo $folio->getDateProject() ?></li>
-                    <li><strong>Url du projet</strong>: <a href="<?php echo $folio->getUrlProject() ?>"><?php echo $folio->getUrlProject() ?>/</a></li>
+                    <li><strong>Catégorie</strong>: <?= $categorie ?></li>
+                    <li><strong>Client</strong>: <?= $folio->getClient() ?></li>
+                    <li><strong>Date du projet</strong>: <?= $folio->getDateProject() ?></li>
+                    <li><strong>Url du projet</strong>: <a href="<?= $folio->getUrlProject() ?>"><?= $folio->getUrlProject() ?>/</a></li>
                 </ul>
             </div>
 
@@ -41,13 +41,13 @@
         <div class="portfolio-description">
             <h2>Déscription du projet</h2>
             <p>
-                <?php echo $folio->getContent() ?>
+                <?= $folio->getContent() ?>
                 <br />
                 <br />
                 Liste des compétences acquises :
             </p>
             <ul>
-                <?php echo $folio->getExpertise() ?>
+                <?= $folio->getExpertise() ?>
             </ul>
         </div>
 

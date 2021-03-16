@@ -335,12 +335,12 @@
     <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
       <?php foreach ($listFolio as $folio) { ?>
-        <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $folio->getCategorie() ?>">
+        <div class="col-lg-4 col-md-6 portfolio-item filter-<?= $folio->getCategorie() ?>">
           <div class="portfolio-wrap">
-            <img src="TemplateUser/assets/img/portfolio/portfolio-<?php echo $folio->getId() ?>.jpg" class="img-fluid" alt="">
+            <img src="TemplateUser/assets/img/portfolio/portfolio-<?= $folio->getId() ?>.jpg" class="img-fluid" alt="">
             <div class="portfolio-links">
-              <a href="TemplateUser/assets/img/portfolio/portfolio-<?php echo $folio->getId() ?>.jpg" data-gall="portfolioGallery" class="venobox" title="<?php echo ucfirst($folio->getCategorie()) ?> <?php echo $folio->getId() ?>"><i class="bx bx-plus"></i></a>
-              <a href="Portfolio&<?php echo $folio->getId() ?>" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="TemplateUser/assets/img/portfolio/portfolio-<?= $folio->getId() ?>.jpg" data-gall="portfolioGallery" class="venobox" title="<?= ucfirst($folio->getCategorie()) ?> <?= $folio->getId() ?>"><i class="bx bx-plus"></i></a>
+              <a href="Portfolio&<?= $folio->getId() ?>" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
         </div>
