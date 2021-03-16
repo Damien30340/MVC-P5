@@ -7,28 +7,28 @@
                         <div class="white-box">
                             <h3 class="box-title mb-0">Commentaires en attente de validations :</h3>
                             <div class="comment-center">
-                                <?php foreach ($listCommentsNoValid as $comment) { ?>
+                                <?php if(!empty($listCommentsNoValid)){ foreach ($listCommentsNoValid as $comment) { ?>
                                     <div class="comment-body d-flex">
                                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
                                         </div>
                                         <div class="mail-contnet">
-                                            <h5><?php echo $comment->getAuthor() ?></h5><span class="time"><?php echo $comment->getFormatDate() ?></span>
+                                            <h5><?= $comment->getAuthor() ?></h5><span class="time"><?= $comment->getFormatDate() ?></span>
                                             <br>
                                             <div class="mb-3 mt-3">
-                                                <span class="mail-desc"><?php echo $comment->getDescription() ?> </span>
+                                                <span class="mail-desc"><?= $comment->getDescription() ?> </span>
                                             </div>
                                             <form action="Admin&acceptComment" method="POST">
-                                                <input type="hidden" id="commentId" name="commentId" value="<?php echo $comment->getId() ?>" />
+                                                <input type="hidden" id="commentId" name="commentId" value="<?= $comment->getId() ?>" />
                                                 <button class="btn-rounded btn btn-default btn-outline" type="submit"><i class="ti-check text-success m-r-5"></i> Accepter</button>
                                             </form>
                                             <br>
                                             <form action="Admin&deleteComment" method="POST">
-                                                <input type="hidden" id="commentId" name="commentId" value="<?php echo $comment->getId() ?>" />
+                                                <input type="hidden" id="commentId" name="commentId" value="<?= $comment->getId() ?>" />
                                                 <button class="btn-rounded btn btn-default btn-outline" type="submit"><i class="ti-close text-danger m-r-5"></i> Rejeter</button>
                                             </form>
                                         </div>
                                     </div>
-                                <?php } ?>
+                                <?php } } else { ?><div class="comment-body d-flex"><div clas="mb-3 mt-3"><?= $noComment ?></div></div><?php } ?>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                         <li>
                                             <a href="javascript:void(0)" class="d-flex align-items-center"><img src="TemplateAdmin/plugins/images/users/varun.jpg" alt="user-img" class="img-circle">
                                                 <div class="ml-2">
-                                                    <span class="text-dark text-muted"><?php echo $user->getMail() ?></span>
+                                                    <span class="text-dark text-muted"><?= $user->getMail() ?></span>
                                                 </div>
                                             </a>
                                         </li>
@@ -62,13 +62,16 @@
                                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/arijit.jpg" alt="user" class="img-circle">
                                         </div>
                                         <div class="mail-contnet">
-                                            <h5>Damien Gobert</h5><span class="time"><?php echo $post->getFormatDate() ?></span>
+                                            <h5>Damien Gobert</h5><span class="time"><?= $post->getFormatDate() ?></span>
                                             <br>
                                             <div class="mb-3 mt-3">
-                                                Titre :<br><?php echo $post->getTitle() ?>
+                                                Titre :<br><?= $post->getTitle() ?>
                                             </div>
                                             <div class="mb-3 mt-3">
-                                                <span class="mail-desc"> Description :<br><?php echo $post->getContent() ?></span>
+                                                Chapo :<br><?= $post->getChapo() ?>
+                                            </div>
+                                            <div class="mb-3 mt-3">
+                                                <span class="mail-desc"> Description :<br><?= $post->getContent() ?></span>
                                             </div>
                                         </div>
                                     </div>

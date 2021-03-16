@@ -219,8 +219,10 @@ class UserController extends BaseController
      */
     public function listCommentsNoValid()
     {
+        $noComment = "Aucun commentaire en attente de validation";
         $listCommentsNoValid = $this->CommentManager->getByValid();
         $this->addParam("listCommentsNoValid", $listCommentsNoValid);
+        $this->addParam("noComment", $noComment);
     }
 
     /**
