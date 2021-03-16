@@ -19,6 +19,9 @@
                                 Titre :<br><?= $post->getTitle() ?>
                             </div>
                             <div class="mb-3 mt-3">
+                                Chapo :<br><?= $post->getChapo() ?>
+                            </div>
+                            <div class="mb-3 mt-3">
                                 <span class="mail-desc"> Description :<br><?= $post->getContent() ?></span>
                             </div>
 

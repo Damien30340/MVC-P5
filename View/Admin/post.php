@@ -2,13 +2,16 @@
     <div class="col-md-12 col-lg-8 col-sm-12">
         <div class="comment-body d-flex border-0">
             <div class="mail-contnet">
-                <h5>Damien Gobert</h5><span class="time"><?php echo $post->getCreation_date() ?></span>
+                <h5>Damien Gobert</h5><span class="time"><?= $post->getCreation_date() ?></span>
                 <br>
                 <div class="mb-3 mt-3">
-                    Titre :<br><?php echo $post->getTitle() ?>
+                    Titre :<br><?= $post->getTitle() ?>
                 </div>
                 <div class="mb-3 mt-3">
-                    <span class="mail-desc"> Description :<br><?php echo $post->getContent() ?></span>
+                    Chapo :<br><?= $post->getChapo() ?>
+                </div>
+                <div class="mb-3 mt-3">
+                    <span class="mail-desc"> Description :<br><?= $post->getContent() ?></span>
                 </div>
             </div>
         </div>
@@ -27,6 +30,8 @@
                                 <input type="hidden" value="<?= $post->getId() ?>" name="postId" id="postId">
                                 <input type="text" class="form-control" placeholder="Titre" name="title" id="title">
                                 <div class="input-group-append"><span class="input-group-text" aria-label="fin de mail">Le titre</span></div>
+                                <input type="text" class="form-control" placeholder="Chapo" name="chapo" id="chapo">
+                                <div class="input-group-append"><span class="input-group-text" aria-label="fin de mail">Le chapo</span></div>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend"><span class="input-group-text" aria-label="description">Description</span></div>
