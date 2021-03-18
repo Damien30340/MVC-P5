@@ -1,15 +1,57 @@
-function validatePass(){
+$(document).ready(function() {
 
-    var pass = document.getElementById("password").value;
-    var pass2 = document.getElementById("password2").value;
+    var $inputPass = $('input#password'),
+        $inputPass2 = $('input#password2'),
+        $inputMail = $('input#mail'),
+        $errorPass = $('.passLabel'),
+        $errorPass2 = $('.pass2Label'),
+        $errorMail = $('.mailLabel'),
+        $regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+        $regexPass = /^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])(?!.*[iIoO])\S{6,20}$/;
 
-    if (pass != pass2) {
-        alert("Les mots de passe ne sont pas identiques");
-        return false;
-    }
-    if (pass == pass2) {
-        alert("Les mots de passs sont identiques");
-        return false;
-    }
-
-}
+    $inputMail.keyup(function () {
+        if (!$regex.test($(this).val())) {
+            $($errorMail).text("Mail invalide");
+            $(this).css({
+                borderColor: 'red',
+                color: 'red'
+            });
+        } else {
+            $($errorMail).text("Mail valide");
+            $(this).css({
+                borderColor: 'green',
+                color: 'green'
+            });
+        }
+    });
+    $inputPass.keyup(function () {
+        if (!$regexPass.test($(this).val())) {
+            $($errorPass).text("Mot de passe incorrect");
+            $(this).css({
+                borderColor: 'red',
+                color: 'red'
+            });
+        } else {
+            $($errorPass).text("Mot de passe correct");
+            $(this).css({
+                borderColor: 'green',
+                color: 'green'
+            });
+        }
+    });
+    $inputPass2.keyup(function () {
+        if ($inputPass.val() != $inputPass2.val()) {
+            $($errorPass2).text("Le mot de passe n'est pas identique");
+            $(this).css({
+                borderColor: 'red',
+                color: 'red'
+            });
+        } else {
+            $($errorPass2).text("Mot de passe correct");
+            $(this).css({
+                borderColor: 'green',
+                color: 'green'
+            });
+        }
+    });
+});

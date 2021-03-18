@@ -120,18 +120,19 @@ class UserController extends BaseController
      */
     public function register($mail, $password, $password2)
     {
+        if (!empty($mail) && !empty($password)) {
+            if ($password == $password2) {
+                $userMail = htmlspecialchars($mail);
+                $userPassword = htmlspecialchars($password);
 
-        if (empty($mail) || empty($password)) {
-            $this->view('errorLogin');
-        } elseif ($password == $password2) {
-            $userMail = htmlspecialchars($mail);
-            $userPassword = htmlspecialchars($password);
-
-            $hash = password_hash($userPassword, PASSWORD_DEFAULT);
-            $this->UserManager->create($userMail, $hash);
-            header("refresh:2; url=Login");
+                $hash = password_hash($userPassword, PASSWORD_DEFAULT);
+                $this->UserManager->create($userMail, $hash);
+                header("refresh:2; url=Login");
+            } else {
+                $this->view('errorRegister');
+            }
         } else {
-            $this->view('register');
+            $this->view('errorRegister');
         }
     }
 
