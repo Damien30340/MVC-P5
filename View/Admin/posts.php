@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12 col-lg-8 col-sm-12">
         <div class="white-box">
-            <?= (isset($textNewPost) ? $textNewPost : "") ?>
+            <?= isset($textNewPost) ? $textNewPost : "" ?>
             <h3 class="box-title mb-0">Liste des posts</h3>
             <div class="comment-center">
 
@@ -13,23 +13,23 @@
                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/arijit.jpg" alt="user" class="img-circle">
                         </div>
                         <div class="mail-contnet">
-                            <h5>Damien Gobert</h5><span class="time"><?= $post->getFormatDate() ?></span>
+                            <h5>Damien Gobert</h5><span class="time"><?= htmlspecialchars($post->getFormatDate()) ?></span>
                             <br>
                             <div class="mb-3 mt-3">
-                                Titre :<br><?= $post->getTitle() ?>
+                                Titre :<br><?= htmlspecialchars($post->getTitle()) ?>
                             </div>
                             <div class="mb-3 mt-3">
-                                Chapo :<br><?= $post->getChapo() ?>
+                                Chapo :<br><?= htmlspecialchars($post->getChapo()) ?>
                             </div>
                             <div class="mb-3 mt-3">
-                                <span class="mail-desc"> Description :<br><?= $post->getContent() ?></span>
+                                <span class="mail-desc"> Description :<br><?= htmlspecialchars($post->getContent()) ?></span>
                             </div>
 
                             <form action="Admin&deletePost" method="POST">
-                                <input type="hidden" id="postId" name="postId" value="<?= $post->getId() ?>" />
+                                <input type="hidden" id="postId" name="postId" value="<?= htmlspecialchars($post->getId()) ?>" />
                                 <button class="btn-rounded btn btn-default btn-outline" type="submit"><i class="ti-close text-danger m-r-5"></i> Suprimer</button>
                             </form>
-                                <a href="Admin&updatePost&<?= $post->getId() ?>"><button class="btn-rounded btn btn-default btn-outline"><i class="text-danger m-r-5"></i> Modifier</button></a>
+                                <a href="Admin&updatePost&<?= htmlspecialchars($post->getId()) ?>"><button class="btn-rounded btn btn-default btn-outline"><i class="text-danger m-r-5"></i> Modifier</button></a>
                         </div>
                     </div>
                 <?php } ?>

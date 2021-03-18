@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="TemplateAdmin/css/style.min.css" rel="stylesheet">
-    <?= (isset($cssContent) ? $cssContent : null) ?>
+    <?= isset($cssContent) ? $cssContent : null ?>
 </head>
 
 <body>
@@ -259,7 +259,7 @@
         <script src="TemplateAdmin/plugins/bower_components/chartist/dist/chartist.min.js"></script>
         <script src="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
         <script src="TemplateAdmin/js/pages/dashboards/dashboard1.js"></script>
-        <?= (isset($jsContent) ? $jsContent : null) ?>
+        <?= isset($jsContent) ? $jsContent : null ?>
 </body>
 
 </html>

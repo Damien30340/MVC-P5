@@ -27,7 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="TemplateUser/assets/css/style.css" rel="stylesheet">
-  <?= (isset($cssContent) ? $cssContent : null) ?>
+  <?= isset($cssContent) ? $cssContent : null ?>
 
   <!-- =======================================================
   * Template Name: iPortfolio - v2.0.2
@@ -78,7 +78,7 @@
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
   <div class="hero-container" data-aos="fade-in">
     <h1>Damien Gobert</h1>
-    <p><span class="typed" data-typed-items="Je suis Développeur, Spécialisé PHP - Symphony, Expert CMS(Wordpress - Prestashop)"></span></p>
+    <p>Développeur <span class="typed" data-typed-items="PHP Symfony-Html-Css, Js-Sql-Jquery-Ajax, Expert CMS(Wordpress - Prestashop)"></span></p>
   </div>
 </section>
 
@@ -119,7 +119,7 @@
 
   <!-- Template Main JS File -->
   <script src="TemplateUser/assets/js/main.js"></script>
-  <?= (isset($jsContent) ? $jsContent : null) ?>
+  <?= isset($jsContent) ? $jsContent : null ?>
 
     </body>
 </html>

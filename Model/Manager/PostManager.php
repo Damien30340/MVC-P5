@@ -19,11 +19,10 @@ class PostManager extends BaseManager
             throw new Exception($req->errorInfo()[2]);
         }
     }
-    public function getAllPostMbr($currentPage)
+    public function getAllPostMbr($currentPage, $nbElemPerPage)
     {
-        $limit2 = $currentPage * 5;
-        $limit1 = $limit2 - 5;
-        $req = $this->bdd->prepare("SELECT * FROM posts ORDER BY creation_date DESC LIMIT {$limit1}, {$limit2}");
+        $offset = ($currentPage - 1) * $nbElemPerPage;
+        $req = $this->bdd->prepare("SELECT * FROM posts ORDER BY creation_date DESC LIMIT $offset, $nbElemPerPage");
         $result = $req->execute();
         if ($result) {
             $req->setFetchMode(PDO::FETCH_CLASS, "Post");

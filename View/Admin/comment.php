@@ -12,10 +12,10 @@
                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/arijit.jpg" alt="user" class="img-circle">
                         </div>
                         <div class="mail-contnet">
-                            <h5><?= $comment->getAuthor() ?></h5><span class="time"><?= $comment->getFormatDate() ?></span>
+                            <h5><?= htmlspecialchars($comment->getAuthor()) ?></h5><span class="time"><?= htmlspecialchars($comment->getFormatDate()) ?></span>
                             <br>
                             <div class="mb-3 mt-3">
-                                <span class="mail-desc"> Description :<br><?= $comment->getDescription() ?></span>
+                                <span class="mail-desc"> Description :<br><?= htmlspecialchars($comment->getDescription()) ?></span>
                             </div>
                         </div>
                     </div>

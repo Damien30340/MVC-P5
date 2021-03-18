@@ -35,7 +35,7 @@ class CommentController extends BaseController
     {
         $author = htmlspecialchars($author);
         $description = htmlspecialchars($description);
-        if (isset($_SESSION['user'])) {
+        if (isset($this->profil)) {
             if(!empty($author) && !empty($description)) {
                 $this->CommentManager->create($idPost, $mail, $author, $description);
                 $this->view("sendComment");

@@ -7,7 +7,7 @@
                 <?php foreach ($listUsers as $oneUser) { ?>
                     <div class="comment-body d-flex border-0">
                         <div class="mail-contnet">
-                            <h5><?= $oneUser->getMail() ?></h5><span class="time"></span>
+                            <h5><?= htmlspecialchars($oneUser->getMail()) ?></h5><span class="time"></span>
                         </div>
                     </div>
                 <?php } ?>

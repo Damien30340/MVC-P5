@@ -167,7 +167,6 @@ class Route
             $controller = new $controllerName($httpRequest, $config);
             if (method_exists($controller, $this->action)) {
                 if ($controller->profil->checkRole($this->auth)) {
-                    $_SESSION['user'] = $controller->profil;
                     $controller->{$this->action}(...$httpRequest->getParam());
                 } else {
                     throw new NoPrivilegeFoundException();

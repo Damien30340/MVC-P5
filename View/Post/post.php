@@ -5,8 +5,8 @@
           <div class="row">
               <div class="col-lg-8 col-md-10 mx-auto">
                   <div class="post-heading">
-                      <h1><?= $post->getTitle() ?></h1>
-                      <h2 class="subheading"><?= $post->getChapo() ?></h2>
+                      <h1><?= htmlspecialchars($post->getTitle()) ?></h1>
+                      <h2 class="subheading"><?= htmlspecialchars($post->getChapo()) ?></h2>
                   </div>
               </div>
           </div>
@@ -18,9 +18,9 @@
       <div class="container">
           <div class="row">
               <div class="col-lg-8 col-md-10 mx-auto">
-                  <p><?= $post->getContent() ?></p>
+                  <p><?= htmlspecialchars($post->getContent()) ?></p>
 
-                  <p>Publié le : <?= $post->getFormatDate() ?></p>
+                  <p>Publié le : <?= htmlspecialchars($post->getFormatDate()) ?></p>
               </div>
           </div>
       </div>
@@ -37,13 +37,13 @@
               <?php foreach ($listComment as $comment) { ?>
                   <div class="post-subtitle">
                       <h4 class="post-title">
-                          <?= $comment->getAuthor() ?>
+                          <?= htmlspecialchars($comment->getAuthor()) ?>
                       </h4>
                       <p>
-                          <?= $comment->getDescription() ?>
+                          <?= htmlspecialchars($comment->getDescription()) ?>
                       </p>
                       <p class="post-meta">Publié le
-                          <?= $comment->getFormatDate() ?>
+                          <?= htmlspecialchars($comment->getFormatDate()) ?>
                       </p>
                   </div>
                   <hr>
@@ -54,10 +54,10 @@
   <div class="container">
       <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-              <form name="comment" action="Post&<?= $post->getId() ?>" method="post">
+              <form name="comment" action="Post&<?= htmlspecialchars($post->getId()) ?>" method="post">
                   <div class="input-group mb-3">
-                      <input type="hidden" value="<?= $idPost ?>" name="idPost" id="idPost">
-                      <input type="hidden" value="<?= (isset($_SESSION['user']) ? $_SESSION['user']->getMail() : null) ?>" name="mail" id="mail">
+                      <input type="hidden" value="<?= htmlspecialchars($profil->getId()) ?>" name="idPost" id="idPost">
+                      <input type="hidden" value="<?= htmlspecialchars($profil->getMail()) ?>" name="mail" id="mail">
                       <input type="text" class="form-control" placeholder="Votre pseudo" name="author" id="author">
                       <div class="input-group-append"><span class="input-group-text" aria-label="pseudo">Pseudo</span></div>
                   </div>

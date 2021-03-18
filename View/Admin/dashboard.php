@@ -7,23 +7,23 @@
                         <div class="white-box">
                             <h3 class="box-title mb-0">Commentaires en attente de validations :</h3>
                             <div class="comment-center">
-                                <?php if(!empty($listCommentsNoValid)){ foreach ($listCommentsNoValid as $comment) { ?>
+                                <?php if(!empty(htmlspecialchars($listCommentsNoValid))){ foreach ($listCommentsNoValid as $comment) { ?>
                                     <div class="comment-body d-flex">
                                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
                                         </div>
                                         <div class="mail-contnet">
-                                            <h5><?= $comment->getAuthor() ?></h5><span class="time"><?= $comment->getFormatDate() ?></span>
+                                            <h5><?= htmlspecialchars($comment->getAuthor()) ?></h5><span class="time"><?= htmlspecialchars($comment->getFormatDate()) ?></span>
                                             <br>
                                             <div class="mb-3 mt-3">
-                                                <span class="mail-desc"><?= $comment->getDescription() ?> </span>
+                                                <span class="mail-desc"><?= htmlspecialchars($comment->getDescription()) ?> </span>
                                             </div>
                                             <form action="Admin&acceptComment" method="POST">
-                                                <input type="hidden" id="commentId" name="commentId" value="<?= $comment->getId() ?>" />
+                                                <input type="hidden" id="commentId" name="commentId" value="<?= htmlspecialchars($comment->getId()) ?>" />
                                                 <button class="btn-rounded btn btn-default btn-outline" type="submit"><i class="ti-check text-success m-r-5"></i> Accepter</button>
                                             </form>
                                             <br>
                                             <form action="Admin&deleteComment" method="POST">
-                                                <input type="hidden" id="commentId" name="commentId" value="<?= $comment->getId() ?>" />
+                                                <input type="hidden" id="commentId" name="commentId" value="<?= htmlspecialchars($comment->getId()) ?>" />
                                                 <button class="btn-rounded btn btn-default btn-outline" type="submit"><i class="ti-close text-danger m-r-5"></i> Rejeter</button>
                                             </form>
                                         </div>
@@ -43,7 +43,7 @@
                                         <li>
                                             <a href="javascript:void(0)" class="d-flex align-items-center"><img src="TemplateAdmin/plugins/images/users/varun.jpg" alt="user-img" class="img-circle">
                                                 <div class="ml-2">
-                                                    <span class="text-dark text-muted"><?= $user->getMail() ?></span>
+                                                    <span class="text-dark text-muted"><?= htmlspecialchars($user->getMail()) ?></span>
                                                 </div>
                                             </a>
                                         </li>
@@ -62,16 +62,16 @@
                                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/arijit.jpg" alt="user" class="img-circle">
                                         </div>
                                         <div class="mail-contnet">
-                                            <h5>Damien Gobert</h5><span class="time"><?= $post->getFormatDate() ?></span>
+                                            <h5>Damien Gobert</h5><span class="time"><?= htmlspecialchars($post->getFormatDate()) ?></span>
                                             <br>
                                             <div class="mb-3 mt-3">
-                                                Titre :<br><?= $post->getTitle() ?>
+                                                Titre :<br><?= htmlspecialchars($post->getTitle()) ?>
                                             </div>
                                             <div class="mb-3 mt-3">
-                                                Chapo :<br><?= $post->getChapo() ?>
+                                                Chapo :<br><?= htmlspecialchars($post->getChapo()) ?>
                                             </div>
                                             <div class="mb-3 mt-3">
-                                                <span class="mail-desc"> Description :<br><?= $post->getContent() ?></span>
+                                                <span class="mail-desc"> Description :<br><?= htmlspecialchars($post->getContent()) ?></span>
                                             </div>
                                         </div>
                                     </div>

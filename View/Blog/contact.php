@@ -3,10 +3,10 @@
         <div class="col-lg-12" data-aos="fade-up">
             <h2>CONTACT</h2>
             
-            <p>Le message sera envoyé avec votre identifiant <?php echo $_SESSION['user']->getMail() ?></p>
+            <p>Le message sera envoyé avec votre identifiant <?= htmlspecialchars($this->profil->getMail()) ?></p>
             <form method="POST">
                 <div class="form-group">
-                    <input type="hidden" class="form-control" id="mail" name="mail" value="<?php echo $_SESSION['user']->getMail() ?>">
+                    <input type="hidden" class="form-control" id="mail" name="mail" value="<?= htmlspecialchars($this->profil->getMail()) ?>">
                 </div>
                 <div class="form-group">
                     <label for="title">Sujet du message</label>

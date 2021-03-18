@@ -38,7 +38,7 @@ class PostController extends BaseController
     public function viewPost($id)
     {
         $this->post($id);
-        $obj = $_SESSION['user']->getListRole();
+        $obj = $this->profil->getListRole();
         $tab = json_decode(json_encode($obj), true);
         if (in_array("MBR", $tab[0])) {
             $this->view("post");
@@ -157,12 +157,11 @@ class PostController extends BaseController
     {
         $currentPage = $idPage;
         $result = $this->PostManager->getAllPage();
-
         // Recovery result for nbr of pages
         $postsPerPage = 5;
         $nbrPage = ceil(intval($result[0]) / $postsPerPage);
 
-        $listPosts = $this->PostManager->getAllPostMbr($currentPage);
+        $listPosts = $this->PostManager->getAllPostMbr($currentPage, $postsPerPage);
         $this->addParam("listPosts", $listPosts);
         $this->addParam("currentPage", $currentPage);
         $this->addParam("nbrPage", $nbrPage);

@@ -23,7 +23,7 @@ class UserController extends BaseController
      */
     public function viewLogin()
     {
-        if ($_SESSION['user']->getId() != 999) {
+        if ($this->profil->getId() != 999) {
             $this->view("loginOpen");
         } else {
             $this->view("login");
@@ -163,7 +163,7 @@ class UserController extends BaseController
             if (!empty($user)) {
                 if (password_verify($userPassword, $user->getPassword())) {
                     $_SESSION['user'] = $user;
-                    if (in_array('2', $user->getListRole())) {
+                    if (in_array('ADM', $user->getListRole())) {
                         header("refresh:2; url=Admin");
                         $this->view("loadingAdmin");
                         exit;

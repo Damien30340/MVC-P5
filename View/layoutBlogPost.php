@@ -5,14 +5,16 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta content="CV, blog professionel Damien Gobert, developpeur d'applications html, css, php, js, symfony" name="description">
-  <meta content="Developpeur, freelance, CV, Damien Gobert" name="keywords">
+  <meta name="description" content="CV, blog professionel Damien Gobert, developpeur d'applications html, css, php, js, symfony">
+  <meta name="keywords" content="Developpeur, freelance, CV, Damien Gobert">
   <meta name="author" content="contact@damiengobert.fr">
 
   <title>Blog professionel - Damien Gobert</title>
 
   <!-- Bootstrap core CSS -->
   <link href="TemplateBlog/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="TemplateUser/assets/img/favicon.png" rel="icon">
+  <link href="TemplateUser/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +23,7 @@
 
   <!-- Custom styles for this template -->
   <link href="TemplateBlog/css/clean-blog.min.css" rel="stylesheet">
-  <?= (isset($cssContent) ? $cssContent : null) ?>
+  <?= isset($cssContent) ? $cssContent : null ?>
 
 </head>
 
@@ -41,15 +43,14 @@
             <a class="nav-link" href="http://localhost/MVC-p5/">Accueil</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link" href="Posts&1">Blog</a>
+            <a class="nav-link" href="Posts&1">Blog</a>
           </li>
           <li class="nav-item">
-          <?php if($_SESSION['user']->getId() == 999 ) { ?><a class="nav-link" href="Login">Se connecter</a> <?php 
-          } else {?><a class="nav-link" href="Login">Se deconnecter</a><?php 
-          } ?>
+            <?php if (htmlspecialchars($this->profil->getId()) == 999) { ?><a class="nav-link" href="Login">Se connecter</a> <?php
+            } else { ?><a class="nav-link" href="Login">Se deconnecter</a><?php } ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Me contacter</a>
+            <a class="nav-link" href="Contact">Me contacter</a>
           </li>
         </ul>
       </div>
@@ -57,10 +58,8 @@
   </nav>
 
 
+  <?= $content ?>
 
-                                            
-
-        <?= $content ?>
 
 
 
@@ -95,7 +94,7 @@
               </a>
             </li>
           </ul>
-          <p class="copyright text-muted">Copyright &copy; Damien Gobert 2021</p>
+          <p class="copyright text-muted">Copyright &copy; <a href="https://damiengobert.fr/">Damien Gobert</a> 2021</p>
         </div>
       </div>
     </div>
@@ -107,7 +106,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="TemplateBlog/js/clean-blog.min.js"></script>
-  <?= (isset($jsContent) ? $jsContent : null) ?>
+  <?= isset($jsContent) ? $jsContent : null ?>
 
 </body>
 

@@ -2,16 +2,16 @@
     <div class="col-md-12 col-lg-8 col-sm-12">
         <div class="comment-body d-flex border-0">
             <div class="mail-contnet">
-                <h5>Damien Gobert</h5><span class="time"><?= $post->getCreation_date() ?></span>
+                <h5>Damien Gobert</h5><span class="time"><?= htmlspecialchars($post->getFormatDate()) ?></span>
                 <br>
                 <div class="mb-3 mt-3">
-                    Titre :<br><?= $post->getTitle() ?>
+                    Titre :<br><?= htmlspecialchars($post->getTitle()) ?>
                 </div>
                 <div class="mb-3 mt-3">
-                    Chapo :<br><?= $post->getChapo() ?>
+                    Chapo :<br><?= htmlspecialchars($post->getChapo()) ?>
                 </div>
                 <div class="mb-3 mt-3">
-                    <span class="mail-desc"> Description :<br><?= $post->getContent() ?></span>
+                    <span class="mail-desc"> Description :<br><?= htmlspecialchars($post->getContent()) ?></span>
                 </div>
             </div>
         </div>
@@ -25,9 +25,9 @@
             <div class="comment-center">
                 <div class="comment-body d-flex border-0">
                     <div class="mail-contnet">
-                        <form action="Admin&updatePost&<?= $post->getId() ?>" method="post">
+                        <form action="Admin&updatePost&<?= htmlspecialchars($post->getId()) ?>" method="post">
                             <div class="input-group mb-3">
-                                <input type="hidden" value="<?= $post->getId() ?>" name="postId" id="postId">
+                                <input type="hidden" value="<?= htmlspecialchars($post->getId()) ?>" name="postId" id="postId">
                                 <input type="text" class="form-control" placeholder="Titre" name="title" id="title">
                                 <div class="input-group-append"><span class="input-group-text" aria-label="fin de mail">Le titre</span></div>
                                 <input type="text" class="form-control" placeholder="Chapo" name="chapo" id="chapo">

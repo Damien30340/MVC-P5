@@ -5,8 +5,8 @@
           <div class="row">
               <div class="col-lg-8 col-md-10 mx-auto">
                   <div class="post-heading">
-                      <h1><?= $post->getTitle() ?></h1>
-                      <h2 class="subheading"><?= $post->getChapo() ?></h2>
+                      <h1><?= htmlspecialchars($post->getTitle()) ?></h1>
+                      <h2 class="subheading"><?= htmlspecialchars($post->getChapo()) ?></h2>
                   </div>
               </div>
           </div>
@@ -18,9 +18,9 @@
       <div class="container">
           <div class="row">
               <div class="col-lg-8 col-md-10 mx-auto">
-                  <p><?= $post->getContent() ?></p>
+                  <p><?= htmlspecialchars($post->getContent()) ?></p>
 
-                  <p>Publié le : <?= $post->getFormatDate() ?></p>
+                  <p>Publié le : <?= htmlspecialchars($post->getFormatDate()) ?></p>
               </div>
           </div>
       </div>
@@ -37,13 +37,13 @@
               <?php foreach ($listComment as $comment) { ?>
                   <div class="post-subtitle">
                       <h4 class="post-title">
-                          <?= $comment->getAuthor() ?>
+                          <?= htmlspecialchars($comment->getAuthor()) ?>
                       </h4>
                       <p>
-                          <?= $comment->getDescription() ?>
+                          <?= htmlspecialchars($comment->getDescription()) ?>
                       </p>
                       <p class="post-meta">Publié le
-                          <?= $comment->getFormatDate() ?>
+                          <?= htmlspecialchars($comment->getFormatDate()) ?>
                       </p>
                   </div>
                   <hr>

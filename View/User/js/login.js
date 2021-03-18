@@ -4,7 +4,7 @@ $(document).ready(function() {
         $inputMail = $('input#mail'),
         $errorPass = $('.passLabel'),
         $errorMail = $('.mailLabel'),
-        $regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+        $regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
         $regexPass = /^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])(?!.*[iIoO])\S{6,20}$/;
 
     $inputMail.keyup(function () {

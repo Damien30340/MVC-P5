@@ -26,7 +26,7 @@ class BlogController extends BaseController
 
     public function contact()
     {
-        if(isset($_SESSION['user']) && $_SESSION['user']->getId() != 999) {
+        if(isset($this->profil) && $this->profil->getId() != 999) {
             $this->view("contact");
         } else {
             $this->view("contactOther");
