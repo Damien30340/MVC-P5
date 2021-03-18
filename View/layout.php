@@ -6,8 +6,9 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Blog professionel - Damien Gobert</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta content="CV, blog professionel Damien Gobert, developpeur d'applications html, css, php, js, symfony" name="description">
+  <meta content="Developpeur, freelance, CV, Damien Gobert" name="keywords">
+  <meta name="author" content="contact@damiengobert.fr">
 
   <!-- Favicon -->
   <link href="TemplateUser/assets/img/favicon.png" rel="icon">
@@ -26,7 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="TemplateUser/assets/css/style.css" rel="stylesheet">
-  <?php echo (isset($cssContent) ? $cssContent : null) ?>
+  <?= (isset($cssContent) ? $cssContent : null) ?>
 
   <!-- =======================================================
   * Template Name: iPortfolio - v2.0.2
@@ -83,7 +84,7 @@
 
 <!-- End Hero -->
 <main id="main">
-        <?php echo $content ?>
+        <?= $content ?>
 </main>
 <!-- ======= Footer ======= -->
 <footer id="footer">
@@ -118,7 +119,7 @@
 
   <!-- Template Main JS File -->
   <script src="TemplateUser/assets/js/main.js"></script>
-  <?php echo (isset($jsContent) ? $jsContent : null) ?>
+  <?= (isset($jsContent) ? $jsContent : null) ?>
 
     </body>
 </html>

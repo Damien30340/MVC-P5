@@ -23,8 +23,8 @@ class CommentManager extends BaseManager
 
     public function update($id)
     {
-        $req = $this->bdd->prepare("UPDATE comments SET valid = 1 WHERE id =" .$id. "");
-        $req->execute();
+        $req = $this->bdd->prepare("UPDATE comments SET valid = 1 WHERE id =:id");
+        $req->execute(['id' => $id]);
     }
 
     public function getByValid()
@@ -42,7 +42,7 @@ class CommentManager extends BaseManager
     public function getAll()
     {
 
-        $req = $this->bdd->prepare("SELECT * FROM comments");
+        $req = $this->bdd->prepare("SELECT * FROM comments ORDER BY creation_date DESC");
         $result = $req->execute();
         if ($result) {
             $req->setFetchMode(PDO::FETCH_CLASS, "Comment");
@@ -54,8 +54,8 @@ class CommentManager extends BaseManager
 
     public function getByIdPost($idPost)
     {
-        $req = $this->bdd->prepare("SELECT * FROM comments WHERE idPost = {$idPost} AND valid = 1");
-        $result = $req->execute();
+        $req = $this->bdd->prepare("SELECT * FROM comments WHERE idPost =:idPost AND valid = 1 ORDER BY creation_date DESC");
+        $result = $req->execute(['idPost' => $idPost]);
         if ($result) {
             $req->setFetchMode(PDO::FETCH_CLASS, "Comment");
             return $req->fetchAll();

@@ -5,8 +5,9 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta content="CV, blog professionel Damien Gobert, developpeur d'applications html, css, php, js, symfony" name="description">
+  <meta content="Developpeur, freelance, CV, Damien Gobert" name="keywords">
+  <meta name="author" content="contact@damiengobert.fr">
 
   <title>Blog professionel - Damien Gobert</title>
 
@@ -20,7 +21,7 @@
 
   <!-- Custom styles for this template -->
   <link href="TemplateBlog/css/clean-blog.min.css" rel="stylesheet">
-  <?php echo (isset($cssContent) ? $cssContent : null) ?>
+  <?= (isset($cssContent) ? $cssContent : null) ?>
 
 </head>
 
@@ -59,7 +60,7 @@
 
                                             
 
-        <?php echo $content ?>
+        <?= $content ?>
 
 
 
@@ -106,7 +107,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="TemplateBlog/js/clean-blog.min.js"></script>
-  <?php echo (isset($jsContent) ? $jsContent : null) ?>
+  <?= (isset($jsContent) ? $jsContent : null) ?>
 
 </body>
 

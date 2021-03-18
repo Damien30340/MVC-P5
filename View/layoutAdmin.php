@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, Ample lite admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, Ample admin lite dashboard bootstrap 4 dashboard template">
-    <meta name="description" content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="keywords" content="Developpeur, freelance, CV, Damien Gobert">
+    <meta name="description" content="CV, blog professionel Damien Gobert, developpeur d'applications html, css, php, js, symfony">
     <meta name="robots" content="noindex,nofollow">
     <title>Dashboard Administration</title>
     <!-- Favicon icon -->
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="TemplateAdmin/css/style.min.css" rel="stylesheet">
-    <?php echo (isset($cssContent) ? $cssContent : null) ?>
+    <?= (isset($cssContent) ? $cssContent : null) ?>
 </head>
 
 <body>
@@ -186,7 +186,7 @@
                                     <div id="sparklinedash"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-success"><?php echo $countPost ?></span></li>
+                                <li class="ml-auto"><span class="counter text-success"><?= $countPost ?></span></li>
                             </ul>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                                     <div id="sparklinedash2"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-purple"><?php echo $countComment ?></span></li>
+                                <li class="ml-auto"><span class="counter text-purple"><?= $countComment ?></span></li>
                             </ul>
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                                     <div id="sparklinedash3"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-info"><?php echo $countUser ?></span>
+                                <li class="ml-auto"><span class="counter text-info"><?= $countUser ?></span>
                                 </li>
                             </ul>
                         </div>
@@ -218,7 +218,7 @@
                 </div>
 
 
-                <?php echo $content ?>
+                <?= $content ?>
 
                 <!-- ============================================================== -->
                 <!-- End Container fluid  -->
@@ -259,7 +259,7 @@
         <script src="TemplateAdmin/plugins/bower_components/chartist/dist/chartist.min.js"></script>
         <script src="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
         <script src="TemplateAdmin/js/pages/dashboards/dashboard1.js"></script>
-        <?php echo (isset($jsContent) ? $jsContent : null) ?>
+        <?= (isset($jsContent) ? $jsContent : null) ?>
 </body>
 
 </html>

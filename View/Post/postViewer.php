@@ -20,7 +20,7 @@
               <div class="col-lg-8 col-md-10 mx-auto">
                   <p><?= $post->getContent() ?></p>
 
-                  <p>Publié le : <?= $post->getCreation_date() ?></p>
+                  <p>Publié le : <?= $post->getFormatDate() ?></p>
               </div>
           </div>
       </div>

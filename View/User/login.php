@@ -6,10 +6,10 @@
             <form action="Login" method="post">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="email"  required name="mail" id="mail">
-                    <div class="input-group-append"><span class="input-group-text" aria-label="fin de mail">@exemple.com</span></div>
+                    <div class="input-group-append"><span class="input-group-text mailLabel" aria-label="fin de mail">@exemple.com</span></div>
                 </div>
                 <div class="input-group mb-3">
-                    <div class="input-group-prepend"><span class="input-group-text" aria-label="****">*</span></div>
+                    <div class="input-group-prepend"><span class="input-group-text passLabel" aria-label="****">*</span></div>
                     <input type="password" class="form-control" placeholder="Mot de passe" required name="password" id="password">
                 </div>
                 <button class="btn btn-primary" type="submit">Se connecter</button>

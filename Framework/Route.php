@@ -170,7 +170,7 @@ class Route
                     $_SESSION['user'] = $controller->profil;
                     $controller->{$this->action}(...$httpRequest->getParam());
                 } else {
-                    echo 'Vous essayer de vous connecter sans privilège';
+                    throw new NoPrivilegeFoundException();
                 }
             } else {
                 throw new ActionNotFoundException();

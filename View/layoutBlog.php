@@ -5,8 +5,9 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="CV, blog professionel Damien Gobert, developpeur d'applications html, css, php, js, symfony">
+  <meta name="keywords" content="Developpeur, freelance, CV, Damien Gobert">
+  <meta name="author" content="contact@damiengobert.fr">
 
   <title>Blog professionel - Damien Gobert</title>
 
@@ -22,7 +23,7 @@
 
   <!-- Custom styles for this template -->
   <link href="TemplateBlog/css/clean-blog.min.css" rel="stylesheet">
-  <?php echo (isset($cssContent) ? $cssContent : null) ?>
+  <?= (isset($cssContent) ? $cssContent : null) ?>
 
 </head>
 
@@ -74,14 +75,14 @@
 
 
 
-  <?php echo $content ?>
+  <?= $content ?>
 
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto" style="text-align: center;">
-        <?php if(isset($currentPage) && $currentPage > 1) { ?><a href="Posts&<?php echo $currentPage - 1 ?>"><img src="TemplateBlog/img/Arrow_preview.png" alt="Arrow next"></a><?php 
+        <?php if(isset($currentPage) && $currentPage > 1) { ?><a href="Posts&<?= $currentPage - 1 ?>"><img src="TemplateBlog/img/Arrow_preview.png" alt="Arrow next"></a><?php 
         } ?>
-        <?php if(isset($currentPage) && $currentPage < $nbrPage) {?><a href="Posts&<?php echo $currentPage + 1 ?>"><img src="TemplateBlog/img/Arrow_next.png" alt="Arrow next"></a><?php 
+        <?php if(isset($currentPage) && $currentPage < $nbrPage) {?><a href="Posts&<?= $currentPage + 1 ?>"><img src="TemplateBlog/img/Arrow_next.png" alt="Arrow next"></a><?php 
         } ?>
       </div>
     </div>
@@ -130,7 +131,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="TemplateBlog/js/clean-blog.min.js"></script>
-    <?php echo (isset($jsContent) ? $jsContent : null) ?>
+    <?= (isset($jsContent) ? $jsContent : null) ?>
 
 </body>
 
