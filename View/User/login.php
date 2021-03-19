@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-lg-12" data-aos="fade-up">
             <h2>Connexion</h2>
-            <?= isset($noLogin)?$noLogin : null ?>
-            <?= isset($textCreate)?$textCreate : null?>
+            <?= isset($noLogin)?filter_var($noLogin) : null ?>
+            <?= isset($textCreate)?filter_var($textCreate) : null?>
             <form action="Login" method="post">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="email"  required name="mail" id="mail">

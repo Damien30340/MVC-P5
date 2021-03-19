@@ -1,2 +1,2 @@
-Le post a bien été supprimé = Id du post : <?= isset($id)?$id:"Aucune variable post trouvé" ?>
+Le post a bien été supprimé = Id du post : <?= isset($id)?filter_var($id):"Aucune variable post trouvé" ?>
 <br />

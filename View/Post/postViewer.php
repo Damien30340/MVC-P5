@@ -33,7 +33,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
               <p>
                   <h2 class="badge badge-pill badge-secondary">
-                      Commentaires <span class="badge badge-light"><?= $nbrComment ?></span>
+                      Commentaires <span class="badge badge-light"><?= filter_var($nbrComment) ?></span>
                   </h2>
               </p>
               <?php foreach ($listComment as $comment) { ?>

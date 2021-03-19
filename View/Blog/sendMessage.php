@@ -5,8 +5,8 @@
             <h3>Votre e'mail est transmis</h3>
 
             <p>Votre message</p>
-            <p>Sujet : <?= $title ?></p>
-            <p>Contenu : <?= $content ?></p>
+            <p>Sujet : <?= filter_var($title) ?></p>
+            <p>Contenu : <?= filter_var($content) ?></p>
             <p><a href="Posts">Voir tous les posts</a></p>
             <p><a href="/MVC-p5">Retour</a></p>
         </div>
