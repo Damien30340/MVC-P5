@@ -6,7 +6,7 @@
             Merci de m'avoir laissé un message.
             <br>
             <br>
-            <a href="Posts">Retourner aux posts</a>
+            <a href="Posts&1">Retourner aux posts</a>
         </div>
     </div>
 </div>

@@ -3,19 +3,19 @@
     <div class="col-lg-8 col-md-10 mx-auto">
       <?php foreach ($listPosts as $post) { ?>
         <div class="post-preview">
-          <a href="Post&<?= htmlspecialchars($post->getId()) ?>" title="Post n°<?= htmlspecialchars($post->getId()) ?>">
+          <a href="Post&<?= filter_var($post->getId()) ?>" title="Post n°<?= filter_var($post->getId()) ?>">
             <h2 class="post-title">
-              <?= htmlspecialchars($post->getTitle()) ?>
+              <?= filter_var($post->getTitle()) ?>
             </h2>
             <h3 class="post-subtitle">
-              <?= htmlspecialchars($post->getChapo()) ?>
+              <?= filter_var($post->getChapo()) ?>
             </h3>
             <p class="post-subtitle">
-              <?= substr(htmlspecialchars($post->getContent()), 0, 200) . " ..." ?>
+              <?= substr($post->getContent(), 0, 200) . " ..." ?>
             </p>
           </a>
-          <p class="post-meta">Publié le
-            <?= htmlspecialchars($post->getFormatDate()) ?>
+          <p class="post-meta">
+            <?= filter_var($post->getFormatDate()) ?>
           </p>
         </div>
         <hr>
@@ -31,10 +31,10 @@
           <li class="page-item <?= (isset($currentPage) && $currentPage > 1) ? "" : "disabled" ?>">
             <a class="page-link" href="Posts&<?= $currentPage - 1 ?>">Previous</a>
           </li>
-          <?php for($p=1;$p<=$nbrPage;$p++){ ?>
-          <li class="page-item <?= ($currentPage == $p)?"active" : "" ?>">
-            <a class="page-link" href="Posts&<?= $p ?>"><?= $p ?></a>
-          </li>
+          <?php for ($p = 1; $p <= $nbrPage; $p++) { ?>
+            <li class="page-item <?= ($currentPage == $p) ? "active" : "" ?>">
+              <a class="page-link" href="Posts&<?= $p ?>"><?= $p ?></a>
+            </li>
           <?php } ?>
           <li class="page-item <?= (isset($currentPage) && $currentPage < $nbrPage) ? "" : "disabled" ?>">
             <a class="page-link" href="Posts&<?= $currentPage + 1 ?>">Next</a>
@@ -43,3 +43,4 @@
       </nav>
     </div>
   </div>
+</div>

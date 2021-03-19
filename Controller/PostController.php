@@ -25,7 +25,7 @@ class PostController extends BaseController
      */
     public function viewPosts($idPage)
     {
-        $this->listPostsMbr($idPage);
+        $this->listPosts($idPage);
         $this->view('listPosts');
     }
 
@@ -40,6 +40,7 @@ class PostController extends BaseController
         $this->post($id);
         $obj = $this->profil->getListRole();
         $tab = json_decode(json_encode($obj), true);
+    
         if (in_array("MBR", $tab[0])) {
             $this->view("post");
         } else {
@@ -102,11 +103,11 @@ class PostController extends BaseController
      * @param  string, $id => Post
      * @return void
      */
-    public function update($postId, $title, $content)
+    public function update($postId, $chapo, $title, $content)
     {
         
         $this->countAdmin();
-        $this->PostManager->update($postId, $title, $content);
+        $this->PostManager->update($postId, $chapo, $title, $content);
         $this->view("../Admin/updatePost");
     
     }
@@ -139,11 +140,13 @@ class PostController extends BaseController
      */
     public function Post($id)
     {
+        $count = $this->CommentManager->getCountById($id);
         $listComment = $this->CommentManager->getByIdPost($id);
         $post = $this->PostManager->getById($id);
         $idPost = $post->getId();
         $this->addParam("idPost", $idPost);
         $this->addParam("post", $post);
+        $this->addParam("nbrComment", $count[0]);
         $this->addParam("listComment", $listComment);
     }
 
@@ -153,7 +156,7 @@ class PostController extends BaseController
      * @param  string, $idPage
      * @return object, $list post
      */
-    public function listPostsMbr($idPage)
+    public function listPosts($idPage)
     {
         $currentPage = $idPage;
         $result = $this->PostManager->getAllPage();
@@ -161,7 +164,7 @@ class PostController extends BaseController
         $postsPerPage = 5;
         $nbrPage = ceil(intval($result[0]) / $postsPerPage);
 
-        $listPosts = $this->PostManager->getAllPostMbr($currentPage, $postsPerPage);
+        $listPosts = $this->PostManager->getAllPost($currentPage, $postsPerPage);
         $this->addParam("listPosts", $listPosts);
         $this->addParam("currentPage", $currentPage);
         $this->addParam("nbrPage", $nbrPage);

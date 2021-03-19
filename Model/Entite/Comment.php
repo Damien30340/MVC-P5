@@ -42,7 +42,10 @@ class Comment
     }
     public function getFormatDate()
     {
-        return $this->creation_date->format('d/m/Y à H:i:s');
+        $text = "Ajouté le : ";
+        $date = $this->creation_date->format('d/m/Y à H:i:s');
+        $author = " par " . $this->getAuthor();
+        return $text . $date . $author;
     }
     public function getValid()
     {

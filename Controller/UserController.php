@@ -57,7 +57,7 @@ class UserController extends BaseController
 
         $this->listCommentsNoValid();
         $this->listUsers();
-        $this->listPosts();
+        $this->getLastPost();
         $this->view("../Admin/dashboard");
     }
     /**
@@ -69,11 +69,11 @@ class UserController extends BaseController
      * @param  void
      * @return void
      */
-    public function viewAdminPosts()
+    public function viewAdminPosts($idPage)
     {
         $this->countAdmin();
 
-        $this->listPosts();
+        $this->listPosts($idPage);
         $this->view("../Admin/posts");
     }
     /**
@@ -121,14 +121,22 @@ class UserController extends BaseController
     public function register($mail, $password, $password2)
     {
         if (!empty($mail) && !empty($password)) {
-            if ($password == $password2) {
-                $userMail = htmlspecialchars($mail);
-                $userPassword = htmlspecialchars($password);
-
-                $hash = password_hash($userPassword, PASSWORD_DEFAULT);
-                $this->UserManager->create($userMail, $hash);
-                header("refresh:2; url=Login");
+            $user = $this->UserManager->getByMail($mail);
+            if ($user == false) {
+                if ($password == $password2) {
+                    $userMail = htmlspecialchars($mail);
+                    $userPassword = htmlspecialchars($password);
+                    $textCreate = "Votre compte est enregistré !";
+                    $hash = password_hash($userPassword, PASSWORD_DEFAULT);
+                    $this->UserManager->create($userMail, $hash);
+                    $this->addParam("textCreate", $textCreate);
+                    $this->view("Login");
+                } else {
+                    $this->view('errorRegister');
+                }
             } else {
+                $mailExist = "L'adresse mail est déjà utilisé";
+                $this->addParam("error", $mailExist);
                 $this->view('errorRegister');
             }
         } else {
@@ -153,28 +161,29 @@ class UserController extends BaseController
     public function login($mail, $password)
     {
         if (empty($mail) || empty($password)) {
+            $formEmpty = "Un des champs requis est vide";
+            $this->addParam("error", $formEmpty);
             $this->view('errorLogin');
         } else {
             $userMail = htmlspecialchars($mail);
             $userPassword = htmlspecialchars($password);
 
             $user = $this->UserManager->login($userMail);
-
-            if (!empty($user)) {
+            if ($user != false) {
                 if (password_verify($userPassword, $user->getPassword())) {
                     $_SESSION['user'] = $user;
-                    if (in_array('ADM', $user->getListRole())) {
-                        header("refresh:2; url=Admin");
-                        $this->view("loadingAdmin");
-                        exit;
-                    } else {
-                        $this->view("authenticate");
-                        exit;
-                    }
+                    $this->view('authenticate');
+                } else {
+                    $passError = "Le mot de passe n'est pas valide";
+                    $this->addParam("error", $passError);
+                    $this->view('errorLogin');
                 }
+            } else {
+                $mailNotExist = "L'adresse mail n'est pas reconnu";
+                $this->addParam("error", $mailNotExist);
+                $this->view('errorLogin');
             }
         }
-        $this->view('errorLogin');
     }
 
     /**
@@ -183,9 +192,22 @@ class UserController extends BaseController
      * @param  void 
      * @return object, $list posts for admin display = no pagination
      */
-    public function listPosts()
+    public function listPosts($idPage)
     {
-        $listPosts = $this->PostManager->getAllPostAdm();
+        $currentPage = $idPage;
+        $result = $this->PostManager->getAllPage();
+        // Recovery result for nbr of pages
+        $postsPerPage = 5;
+        $nbrPage = ceil(intval($result[0]) / $postsPerPage);
+
+        $listPosts = $this->PostManager->getAllPost($currentPage, $postsPerPage);
+        $this->addParam("listPosts", $listPosts);
+        $this->addParam("currentPage", $currentPage);
+        $this->addParam("nbrPage", $nbrPage);
+    }
+    public function getLastPost()
+    {
+        $listPosts = $this->PostManager->getLastPost();
         $this->addParam("listPosts", $listPosts);
     }
 

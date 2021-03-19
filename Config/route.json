@@ -177,12 +177,14 @@
 		]
 	},
 	{
-		"path": "/Admin&Posts",
+		"path": "/Admin&Posts&([0-9]*)",
 		"controller": "User",
 		"action": "viewAdminPosts",
 		"method": "GET",
 		"layout": "layoutAdmin",
-		"param": [],
+		"param": [
+			"idPage"
+		],
 		"auth": "ADM",
 		"manager": [
 			"User",
@@ -247,6 +249,7 @@
 		"layout": "layoutAdmin",
 		"param": [
 			"postId",
+			"chapo",
 			"title",
 			"content"
 		],

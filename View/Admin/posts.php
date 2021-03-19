@@ -13,23 +13,23 @@
                         <div class="user-img"> <img src="TemplateAdmin/plugins/images/users/arijit.jpg" alt="user" class="img-circle">
                         </div>
                         <div class="mail-contnet">
-                            <h5>Damien Gobert</h5><span class="time"><?= htmlspecialchars($post->getFormatDate()) ?></span>
+                            <h5>Damien Gobert</h5><span class="time"><?= filter_var($post->getFormatDate()) ?></span>
                             <br>
                             <div class="mb-3 mt-3">
-                                Titre :<br><?= htmlspecialchars($post->getTitle()) ?>
+                                Titre :<br><?= filter_var($post->getTitle()) ?>
                             </div>
                             <div class="mb-3 mt-3">
-                                Chapo :<br><?= htmlspecialchars($post->getChapo()) ?>
+                                Chapo :<br><?= filter_var($post->getChapo()) ?>
                             </div>
                             <div class="mb-3 mt-3">
-                                <span class="mail-desc"> Description :<br><?= htmlspecialchars($post->getContent()) ?></span>
+                                <span class="mail-desc"> Description :<br><?= filter_var($post->getContent()) ?></span>
                             </div>
 
                             <form action="Admin&deletePost" method="POST">
-                                <input type="hidden" id="postId" name="postId" value="<?= htmlspecialchars($post->getId()) ?>" />
+                                <input type="hidden" id="postId" name="postId" value="<?= filter_var($post->getId()) ?>" />
                                 <button class="btn-rounded btn btn-default btn-outline" type="submit"><i class="ti-close text-danger m-r-5"></i> Suprimer</button>
                             </form>
-                                <a href="Admin&updatePost&<?= htmlspecialchars($post->getId()) ?>"><button class="btn-rounded btn btn-default btn-outline"><i class="text-danger m-r-5"></i> Modifier</button></a>
+                                <a href="Admin&updatePost&<?= filter_var($post->getId()) ?>"><button class="btn-rounded btn btn-default btn-outline"><i class="text-danger m-r-5"></i> Modifier</button></a>
                         </div>
                     </div>
                 <?php } ?>
@@ -37,7 +37,27 @@
         </div>
     </div>
 </div>
-
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item <?= (isset($currentPage) && $currentPage > 1) ? "" : "disabled" ?>">
+            <a class="page-link" href="Admin&Posts&<?= $currentPage - 1 ?>">Previous</a>
+          </li>
+          <?php for ($p = 1; $p <= $nbrPage; $p++) { ?>
+            <li class="page-item <?= ($currentPage == $p) ? "active" : "" ?>">
+              <a class="page-link" href="Admin&Posts&<?= $p ?>"><?= $p ?></a>
+            </li>
+          <?php } ?>
+          <li class="page-item <?= (isset($currentPage) && $currentPage < $nbrPage) ? "" : "disabled" ?>">
+            <a class="page-link" href="Admin&Posts&<?= $currentPage + 1 ?>">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
 <div class="row">
     <div class="col-md-12 col-lg-8 col-sm-12">
         <div class="white-box">

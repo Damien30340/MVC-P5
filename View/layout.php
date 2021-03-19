@@ -90,7 +90,7 @@
 <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright 2021
+        &copy; <?php if (in_array('ADM', $tab[1])) { ?><a href="Admin">Copyright 2021</a> <?php } else { ?>Copyright 2021<?php } ?>
       </div>
       <div class="credits">
         Fait par <a href="https://damiengobert.fr/">Damien Gobert</a>

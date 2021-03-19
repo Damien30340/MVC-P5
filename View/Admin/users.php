@@ -4,10 +4,10 @@
             <h3 class="box-title mb-0">Utilisateurs enregistrés</h3>
             <div class="comment-center">
 
-                <?php foreach ($listUsers as $oneUser) { ?>
+                <?php foreach ($listUsers as $user) { ?>
                     <div class="comment-body d-flex border-0">
                         <div class="mail-contnet">
-                            <h5><?= htmlspecialchars($oneUser->getMail()) ?></h5><span class="time"></span>
+                            <h5><?= filter_var($user->getMail()) ?></h5><span class="time"></span>
                         </div>
                     </div>
                 <?php } ?>

@@ -110,7 +110,7 @@
               </a>
             </li>
           </ul>
-          <p class="copyright text-muted">Copyright &copy; <a href="https://damiengobert.fr/">Damien Gobert</a> 2021</p>
+          <p class="copyright text-muted"><?php if (in_array('ADM', $tab[1])) { ?><a href="Admin">Copyright </a> <?php } else { ?>Copyright <?php } ?> &copy; <a href="https://damiengobert.fr/">Damien Gobert</a> 2021</p>
         </div>
       </div>
     </div>

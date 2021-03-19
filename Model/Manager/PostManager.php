@@ -19,7 +19,7 @@ class PostManager extends BaseManager
             throw new Exception($req->errorInfo()[2]);
         }
     }
-    public function getAllPostMbr($currentPage, $nbElemPerPage)
+    public function getAllPost($currentPage, $nbElemPerPage)
     {
         $offset = ($currentPage - 1) * $nbElemPerPage;
         $req = $this->bdd->prepare("SELECT * FROM posts ORDER BY creation_date DESC LIMIT $offset, $nbElemPerPage");
@@ -31,9 +31,9 @@ class PostManager extends BaseManager
             throw new Exception($req->errorInfo()[2]);
         }
     }
-    public function getAllPostAdm()
+    public function getLastPost()
     {
-        $req = $this->bdd->prepare("SELECT * FROM posts");
+        $req = $this->bdd->prepare("SELECT * FROM posts ORDER BY creation_date LIMIT 0, 5");
         $result = $req->execute();
         if ($result) {
             $req->setFetchMode(PDO::FETCH_CLASS, "Post");
@@ -66,14 +66,20 @@ class PostManager extends BaseManager
             throw new Exception($req->errorInfo()[2]);
         }
     }
-    public function update($id, $title, $content)
+    public function update($id, $title, $chapo, $content)
     {
-        $req = $this->bdd->prepare("UPDATE posts SET title =:title, content =:content WHERE id =:id");
-        $req->execute([
+        $req = $this->bdd->prepare("UPDATE posts SET title =:title, content =:content, chapo=:chapo, update_date = NOW() WHERE id =:id");
+        $result = $req->execute([
             'title' => $title,
+            'chapo' => $chapo,
             'content' => $content,
             'id' => $id
         ]);
+        if ($result) {
+            return $result;
+        } else {
+            throw new Exception($req->errorInfo()[2]);
+        }
     }
 
     public function create($title, $content)

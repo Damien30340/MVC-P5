@@ -167,6 +167,10 @@ class Route
             $controller = new $controllerName($httpRequest, $config);
             if (method_exists($controller, $this->action)) {
                 if ($controller->profil->checkRole($this->auth)) {
+                    $obj = $controller->profil->getListRole();
+                    $tab = json_decode(json_encode($obj), true);
+                    isset($tab[1])?$tab[1] : $tab[1] = [];
+                    $controller->addParam("tab", $tab);
                     $controller->{$this->action}(...$httpRequest->getParam());
                 } else {
                     throw new NoPrivilegeFoundException();

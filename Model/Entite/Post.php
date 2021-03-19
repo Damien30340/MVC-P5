@@ -8,11 +8,13 @@ class Post
     private $chapo;
     private $content;
     private $creation_date;
+    private $dateUpdate;
 
 
     public function __construct()
     {
         $this->creation_date = new DateTime($this->creation_date);
+        is_null($this->dateUpdate)? null: $this->dateUpdate = new DateTime($this->dateUpdate);
     }
 
     public function getId()
@@ -34,9 +36,21 @@ class Post
     {
         return $this->creation_date;
     }
+    public function getDateUpdate(){
+        return $this->dateUpdate;
+    }
     public function getFormatDate()
     {
-        return $this->creation_date->format('d/m/Y à H:i:s');
+        $text = 'Ajouté le : ';
+        $author = ' par Damien';
+        $date = $this->creation_date->format('d/m/Y à H:i:s');
+        return $text . $date . $author;
+    }
+    public function getFormatDateUpdate()
+    {
+        $text = 'Modifié le : ';
+        $date = $this->dateUpdate->format('d/m/Y à H:i:s');
+        return $text . $date;
     }
 
 }

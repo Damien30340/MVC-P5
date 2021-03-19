@@ -63,4 +63,14 @@ class CommentManager extends BaseManager
             throw new Exception($req->errorInfo()[2]);
         }
     }
+    public function getCountById($id)
+    {
+
+        // Récupération du nombre de posts dans la bdd
+        $req = $this->bdd->prepare("SELECT COUNT(*) from comments WHERE idPost = $id AND valid IS NOT NULL");
+        $req->execute();
+        $result = $req->fetch();
+
+        return $result;
+    }
 }

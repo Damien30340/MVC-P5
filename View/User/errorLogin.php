@@ -3,7 +3,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="col-lg-12" data-aos="fade-up">
                 <h2>Erreur de login</h2>
-                Login ou mdp incorrect !
+                <?= filter_var($error) ?>
             </div>
             <div class="col-lg-12" data-aos="fade-up">
                 <p>

@@ -34,7 +34,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="Admin">
+                    <a class="navbar-brand" href="/MVC-p5">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -124,7 +124,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="Admin&Posts" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="Admin&Posts&1" aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
                                 <span class="hide-menu">Posts</span>
                             </a>
