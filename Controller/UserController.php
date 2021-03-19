@@ -123,7 +123,8 @@ class UserController extends BaseController
         if (!empty($mail) && !empty($password)) {
             $user = $this->UserManager->getByMail($mail);
             if ($user == false) {
-                if ($password == $password2) {
+                $regexPass = "/^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])(?!.*[iIoO])\S{6,20}$/";
+                if ($password == $password2 && preg_match($regexPass, $password)) {
                     $userMail = htmlspecialchars($mail);
                     $userPassword = htmlspecialchars($password);
                     $textCreate = "Votre compte est enregistré !";
@@ -132,6 +133,8 @@ class UserController extends BaseController
                     $this->addParam("textCreate", $textCreate);
                     $this->view("Login");
                 } else {
+                    $errorPass = "Le mot de passe doit respecter les exigences de complexité";
+                    $this->addParam("error", $errorPass);
                     $this->view('errorRegister');
                 }
             } else {
@@ -140,6 +143,8 @@ class UserController extends BaseController
                 $this->view('errorRegister');
             }
         } else {
+            $formEmpty = "Merci de renseigner tous les champs !";
+            $this->addParam("error", $formEmpty);
             $this->view('errorRegister');
         }
     }

@@ -200,6 +200,7 @@
 		"layout": "layoutAdmin",
 		"param": [
 			"title",
+			"chapo",
 			"content"
 		],
 		"auth": "ADM",

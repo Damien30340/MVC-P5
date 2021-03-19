@@ -20,19 +20,19 @@
         <div class="portfolio-details-container">
 
             <div class="owl-carousel portfolio-details-carousel">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= htmlspecialchars($folio->getId()) ?>-1.jpg" class="img-fluid" alt="">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= htmlspecialchars($folio->getId()) ?>-2.jpg" class="img-fluid" alt="">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= htmlspecialchars($folio->getId()) ?>-3.jpg" class="img-fluid" alt="">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-1.jpg" class="img-fluid" alt="">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-2.jpg" class="img-fluid" alt="">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-3.jpg" class="img-fluid" alt="">
             </div>
 
             <div class="portfolio-info">
                 <h3>Information :</h3>
                 <ul>
                     <li></li>
-                    <li><strong>Catégorie</strong>: <?= htmlspecialchars($categorie) ?></li>
-                    <li><strong>Client</strong>: <?= htmlspecialchars($folio->getClient()) ?></li>
-                    <li><strong>Date du projet</strong>: <?= htmlspecialchars($folio->getDateProject()) ?></li>
-                    <li><strong>Url du projet</strong>: <a href="<?= htmlspecialchars($folio->getUrlProject()) ?>"><?= htmlspecialchars($folio->getUrlProject()) ?>/</a></li>
+                    <li><strong>Catégorie</strong>: <?= filter_var($categorie) ?></li>
+                    <li><strong>Client</strong>: <?= filter_var($folio->getClient()) ?></li>
+                    <li><strong>Date du projet</strong>: <?= filter_var($folio->getDateProject()) ?></li>
+                    <li><strong>Url du projet</strong>: <a href="<?= filter_var($folio->getUrlProject()) ?>"><?= filter_var($folio->getUrlProject()) ?>/</a></li>
                 </ul>
             </div>
 
@@ -41,7 +41,7 @@
         <div class="portfolio-description">
             <h2>Déscription du projet</h2>
             <p>
-                <?= htmlspecialchars($folio->getContent()) ?>
+                <?= filter_var($folio->getContent()) ?>
                 <br />
                 <br />
                 Liste des compétences acquises :

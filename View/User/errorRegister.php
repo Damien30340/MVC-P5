@@ -3,7 +3,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="col-lg-12" data-aos="fade-up">
                 <h2>Erreur d'inscription</h2>
-                <p><?= isset($error)?$error : 'Les données renseignés sont invalides !' ?></p>
+                <p><?= filter_var($error) ?></p>
                 <p>Veuillez réessayer.</p>
             </div>
             <div class="col-lg-12" data-aos="fade-up">

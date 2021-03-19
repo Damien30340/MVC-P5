@@ -26,7 +26,7 @@ class BlogController extends BaseController
 
     public function contact()
     {
-        if(isset($this->profil) && $this->profil->getId() != 999) {
+        if (isset($this->profil) && $this->profil->getId() != 999) {
             $this->view("contact");
         } else {
             $this->view("contactOther");
@@ -45,17 +45,15 @@ class BlogController extends BaseController
         $mail = htmlspecialchars($mail);
         $title = htmlspecialchars($title);
         $content = htmlspecialchars($content);
-        $msg = "E-mail: " . $mail . "<br>";
-        $msg .= "Sujet: " . $title . "<br>";
-        $msg .= "Content: " . $content . "<br>";
 
-        $mailAdmin = "contact@damiengobert.fr";
-        $subject = "Formulaire damiengobert.fr";
-
-        $mailheaders = "FROM : Formulaire contact <br>";
-        $mailheaders .= "Reply-To : " .$mail. "<br><br>";
-
-        mail($mailAdmin, $subject, $msg, $mailheaders);
+        // Create the email and send the message
+        $to = 'contact@damiengobert.fr'; 
+        $email_subject = "Contact Form damiengobert.fr : " .$mail;
+        $email_body = "Vous avez reçu un nouveau message en provenance de votre formulaire.\n\n" . "Details :\n\nmail: ". $mail. "\n\nSujet : " .$title. "\n\nMessage:\n" .$content;
+        $headers = "From: damiengobert.fr\n";
+        $headers .= "Répondre à : " . $mail;
+        mail($to, $email_subject, $email_body, $headers);
+        return true;
 
         $this->addParam("title", $title);
         $this->addParam("content", $content);

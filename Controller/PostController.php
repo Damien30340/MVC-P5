@@ -67,13 +67,16 @@ class PostController extends BaseController
      * @param  string, $content of post
      * @return void
      */
-    public function create($title, $content)
+    public function create($title, $chapo, $content)
     {
         $this->countAdmin();
         $textNewPost = "Nouvelle entrée dans la bdd enregistrée !";
 
-        $this->listPostsAdm();
-        $this->PostManager->create($title, $content);
+        $title = htmlspecialchars($title);
+        $chapo = htmlspecialchars($chapo);
+
+        $this->listPosts(1);
+        $this->PostManager->create($title, $chapo, $content);
         $this->addParam("textNewPost", $textNewPost);
 
         $this->view("../Admin/posts");
@@ -169,18 +172,6 @@ class PostController extends BaseController
         $this->addParam("currentPage", $currentPage);
         $this->addParam("nbrPage", $nbrPage);
     }
-    /**
-     * The method initialize the data for admin view
-     * 
-     * @param  void
-     * @return object, $list posts 
-     */
-    public function listPostsAdm()
-    {
-        $listPosts = $this->PostManager->getAllPostAdm();
-        $this->addParam("listPosts", $listPosts);
-    }
-
     /**
      * The method initialize the comments datas for post view
      * 

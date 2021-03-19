@@ -62,12 +62,8 @@
       <nav class="nav-menu">
         <ul>
           <li class="active"><a href="/MVC-p5"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
-          <li><a href="#about"><i class="bx bx-user"></i> <span>A propos</span></a></li>
-          <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Résumé</span></a></li>
-          <li><a href="#portfolio"><i class="bx bx-book-content"></i>Créations</a></li>
-          <li><a href="#contact"><i class="bx bx-envelope"></i>Contact</a></li>
-          <li><a href="Posts"><i class="bx bx-news"></i>Blog</a></li>
-          <li><a href="Contact"><i class="bx bxs-envelope"></i>Contact</a></li>
+          <li><a href="/MVC-p5/Posts&1"><i class="bx bx-news"></i>Blog</a></li>
+          <li><a href="/MVC-p5/Contact"><i class="bx bxs-envelope"></i>Contact</a></li>
         </ul>
       </nav><!-- .nav-menu -->
       <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>

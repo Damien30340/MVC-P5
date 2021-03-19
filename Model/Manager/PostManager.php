@@ -68,7 +68,7 @@ class PostManager extends BaseManager
     }
     public function update($id, $title, $chapo, $content)
     {
-        $req = $this->bdd->prepare("UPDATE posts SET title =:title, content =:content, chapo=:chapo, update_date = NOW() WHERE id =:id");
+        $req = $this->bdd->prepare("UPDATE posts SET title =:title, content =:content, chapo=:chapo, dateUpdate = NOW() WHERE id =:id");
         $result = $req->execute([
             'title' => $title,
             'chapo' => $chapo,
@@ -82,9 +82,9 @@ class PostManager extends BaseManager
         }
     }
 
-    public function create($title, $content)
+    public function create($title,$chapo, $content)
     {
-        $req = $this->bdd->prepare("INSERT INTO posts(title, content) VALUE(?, ?)");
-        $req->execute(array($title, $content));
+        $req = $this->bdd->prepare("INSERT INTO posts(title, chapo, content) VALUE(?, ?, ?)");
+        $req->execute([$title, $chapo, $content]);
     }
 }
