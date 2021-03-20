@@ -29,15 +29,15 @@
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item <?= (isset($currentPage) && $currentPage > 1) ? "" : "disabled" ?>">
-            <a class="page-link" href="Posts&<?= $currentPage - 1 ?>">Previous</a>
+            <a class="page-link" href="Posts&<?= filter_var($currentPage - 1) ?>">Previous</a>
           </li>
           <?php for ($p = 1; $p <= $nbrPage; $p++) { ?>
             <li class="page-item <?= ($currentPage == $p) ? "active" : "" ?>">
-              <a class="page-link" href="Posts&<?= $p ?>"><?= $p ?></a>
+              <a class="page-link" href="Posts&<?= filter_var($p) ?>"><?= filter_var($p) ?></a>
             </li>
           <?php } ?>
           <li class="page-item <?= (isset($currentPage) && $currentPage < $nbrPage) ? "" : "disabled" ?>">
-            <a class="page-link" href="Posts&<?= $currentPage + 1 ?>">Next</a>
+            <a class="page-link" href="Posts&<?= filter_var($currentPage + 1) ?>">Next</a>
           </li>
         </ul>
       </nav>

@@ -28,7 +28,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                <?php } } else { ?><div class="comment-body d-flex"><div clas="mb-3 mt-3"><?= $noComment ?></div></div><?php } ?>
+                                <?php } } else { ?><div class="comment-body d-flex"><div clas="mb-3 mt-3"><?= filter_var($noComment) ?></div></div><?php } ?>
                             </div>
                         </div>
                     </div>

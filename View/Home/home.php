@@ -1,5 +1,4 @@
 <!-- ======= About Section ======= -->
-
 <section id="about" class="about">
   <div class="container">
 
@@ -353,7 +352,7 @@
   <div class="container">
 
     <div class="section-title">
-      <h2>Contact</h2>
+      <h2>Mes coordonnées</h2>
       <p></p>
     </div>
 
@@ -381,52 +380,47 @@
 
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45823.57723633561!2d4.0554226515286524!3d44.125167151497045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4424287b7d8e3%3A0x4078821166b4830!2s30100%20Al%C3%A8s!5e0!3m2!1sfr!2sfr!4v1606375082955!5m2!1sfr!2sfr" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
 
-
-
-      </div>
-
-      <!-- </div> -->
-
-      <!-------------------------------------------------- form suspension ------------------------------------------------
-
-      <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-        <form form action="mail.php" method="POST" role="form" class="php-email-form">
-           <div class="row">
-            <div class="form-group col-md-6">
-              <label for="name">Votre nom</label>
-              <input type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-              <div class="validate"></div>
+        <div class="col-lg-12" data-aos="fade-up">
+          <div class="section-title">
+            <br>
+            <h2>Contactez-moi</h2>
+          </div>
+          <form action="Contact" method="POST">
+            <?php if (isset($this->profil) && $this->profil->getId() != 999) { ?>
+              <p>Le message sera envoyé avec votre identifiant : <?= filter_var($this->profil->getMail()) ?></p>
+              <br>
+              <div class="form-group">
+                <input type="hidden" class="form-control" id="mail" name="mail" value="<?= filter_var($this->profil->getMail()) ?>">
+              </div>
+            <?php } else { ?>
+              <div class="form-group">
+                <label for="mail">Votre adresse mail</label>
+                <input type="email" class="form-control" id="mail" name="mail" required placeholder="name@example.com">
+              </div>
+            <?php } ?>
+            <div class="form-group">
+              <label for="title">Sujet du message</label>
+              <input type="text" class="form-control" id="title" name="title" required placeholder="Sujet">
             </div>
-            <div class="form-group col-md-6">
-              <label for="name">Votre mail</label>
-              <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
-              <div class="validate"></div>
+            <div class="form-group">
+              <label for="content">Contenu du message</label>
+              <textarea class="form-control" id="content" name="content" required rows="3"></textarea>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="name">Sujet</label>
-            <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-            <div class="validate"></div>
-          </div>
-          <div class="form-group">
-            <label for="name">Message</label>
-            <textarea class="form-control" name="message" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
-            <div class="validate"></div>
-          </div>
-          <div class="mb-3">
-             <div class="loading">Chargement</div>
-            <div class="error-message"></div> 
-            <div class="sent-message">Votre message est envoyé. Merci !</div>
-          </div>        
-          <div class="text-center"><button type="submit">Envoyer</button></div>
-          
-
-        </form>
+            <br>
+            <?= $captcha->html() ?>
+            <br>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Envoyer</button>
+            </div>
+          </form>
+        </div>
       </div>
-      
-      ------------------------------------------------ form end suspension ------------------------------------>
-
     </div>
+  </div>
+
+  <!-- </div> -->
+
+  </div>
 
   </div>
 </section><!-- End Contact Section -->

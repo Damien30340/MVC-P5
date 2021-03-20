@@ -106,11 +106,11 @@ class PostController extends BaseController
      * @param  string, $id => Post
      * @return void
      */
-    public function update($postId, $chapo, $title, $content)
+    public function update($postId, $title, $chapo, $content)
     {
         
         $this->countAdmin();
-        $this->PostManager->update($postId, $chapo, $title, $content);
+        $this->PostManager->update($postId, $title, $chapo, $content);
         $this->view("../Admin/updatePost");
     
     }

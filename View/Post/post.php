@@ -18,8 +18,8 @@
       <div class="container">
           <div class="row">
               <div class="col-lg-8 col-md-10 mx-auto">
-                  <p><?= is_null($post->getdateUpdate()) ? "" : $post->getFormatDateUpdate() ?></p>
-                  <p><?= $post->getContent() ?></p>
+                  <p><?= is_null($post->getdateUpdate()) ? "" : filter_var($post->getFormatDateUpdate()) ?></p>
+                  <p><?= filter_var($post->getContent()) ?></p>
 
                   <p><?= filter_var($post->getFormatDate()) ?></p>
               </div>
@@ -34,7 +34,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
               <p>
               <h2 class="badge badge-pill badge-secondary">
-                  Commentaires <span class="badge badge-light"><?= $nbrComment ?></span>
+                  Commentaires <span class="badge badge-light"><?= filter_var($nbrComment) ?></span>
               </h2>
               </p>
               <?php foreach ($listComment as $comment) { ?>

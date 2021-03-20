@@ -20,9 +20,9 @@
         <div class="portfolio-details-container">
 
             <div class="owl-carousel portfolio-details-carousel">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-1.jpg" class="img-fluid" alt="">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-2.jpg" class="img-fluid" alt="">
-                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-3.jpg" class="img-fluid" alt="">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-1.jpg" class="img-fluid" alt="portfolio-details<?= filter_var($folio->getId()) ?>-1">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-2.jpg" class="img-fluid" alt="portfolio-details<?= filter_var($folio->getId()) ?>-2">
+                <img src="TemplateUser/assets/img/portfolio/portfolio-details<?= filter_var($folio->getId()) ?>-3.jpg" class="img-fluid" alt="portfolio-details<?= filter_var($folio->getId()) ?>-3">
             </div>
 
             <div class="portfolio-info">
@@ -47,7 +47,7 @@
                 Liste des compétences acquises :
             </p>
             <ul>
-                <?= $folio->getExpertise() ?>
+                <?= filter_var($folio->getExpertise()) ?>
             </ul>
         </div>
 

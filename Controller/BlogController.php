@@ -26,6 +26,8 @@ class BlogController extends BaseController
 
     public function contact()
     {
+        $captcha = new Recaptcha('6Lcx8koUAAAAAA_4NYPG8vUeCMfPJ-L05cEY-VVe', '6Lcx8koUAAAAACobzt-PsgKvvgROErNvFLxQ0P03');
+        $this->addParam("captcha", $captcha);
         if (isset($this->profil) && $this->profil->getId() != 999) {
             $this->view("contact");
         } else {
@@ -41,22 +43,27 @@ class BlogController extends BaseController
      */
     public function sendMessage($mail, $title, $content)
     {
+        $captcha = new Recaptcha('6Lcx8koUAAAAAA_4NYPG8vUeCMfPJ-L05cEY-VVe', '6Lcx8koUAAAAACobzt-PsgKvvgROErNvFLxQ0P03');
+        $this->addParam("captcha", $captcha);
 
-        $mail = htmlspecialchars($mail);
-        $title = htmlspecialchars($title);
-        $content = htmlspecialchars($content);
+        if ($captcha->isValid($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']) === false) {
+            $this->view("errorMessage");
+        } else {
+            $mail = htmlspecialchars($mail);
+            $title = htmlspecialchars($title);
+            $content = htmlspecialchars($content);
 
-        // Create the email and send the message
-        $to = 'contact@damiengobert.fr'; 
-        $email_subject = "Contact Form damiengobert.fr : " .$mail;
-        $email_body = "Vous avez reçu un nouveau message en provenance de votre formulaire.\n\n" . "Details :\n\nmail: ". $mail. "\n\nSujet : " .$title. "\n\nMessage:\n" .$content;
-        $headers = "From: damiengobert.fr\n";
-        $headers .= "Répondre à : " . $mail;
-        mail($to, $email_subject, $email_body, $headers);
-        return true;
+            // Create the email and send the message
+            $to = 'contact@damiengobert.fr';
+            $email_subject = "Contact Form damiengobert.fr : " . $mail;
+            $email_body = "Vous avez reçu un nouveau message en provenance de votre formulaire.\n\n" . "Details :\n\nmail: " . $mail . "\n\nSujet : " . $title . "\n\nMessage:\n" . $content;
+            $headers = "From: damiengobert.fr\n";
+            $headers .= "Répondre à : " . $mail;
+            mail($to, $email_subject, $email_body, $headers); 
 
-        $this->addParam("title", $title);
-        $this->addParam("content", $content);
-        $this->view("sendMessage");
+            $this->addParam("title", $title);
+            $this->addParam("content", $content);
+            $this->view("sendMessage");
+        }
     }
 }

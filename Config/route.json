@@ -250,8 +250,8 @@
 		"layout": "layoutAdmin",
 		"param": [
 			"postId",
-			"chapo",
 			"title",
+			"chapo",
 			"content"
 		],
 		"auth": "ADM",

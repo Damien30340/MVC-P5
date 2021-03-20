@@ -9,7 +9,7 @@
   <meta content="CV, blog professionel Damien Gobert, developpeur d'applications html, css, php, js, symfony" name="description">
   <meta content="Developpeur, freelance, CV, Damien Gobert" name="keywords">
   <meta name="author" content="contact@damiengobert.fr">
-
+  <script src='https://www.google.com/recaptcha/api.js'></script>
   <!-- Favicon -->
   <link href="TemplateUser/assets/img/favicon.png" rel="icon">
   <link href="TemplateUser/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -64,7 +64,6 @@
       <li><a href="#portfolio"><i class="bx bx-book-content"></i>Créations</a></li>
       <li><a href="#contact"><i class="bx bx-envelope"></i>Contact</a></li>
       <li><a href="Posts&1"><i class="bx bx-news"></i>Blog</a></li>
-      <li><a href="Contact" target=_blank><i class="bx bxs-envelope"></i>Contact</a></li>
       </ul>
     </nav><!-- .nav-menu -->
     <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
@@ -119,6 +118,7 @@
 
   <!-- Template Main JS File -->
   <script src="TemplateUser/assets/js/main.js"></script>
+  
   <?= isset($jsContent) ? $jsContent : null ?>
 
     </body>
