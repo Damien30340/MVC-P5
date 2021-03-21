@@ -27,7 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="TemplateUser/assets/css/style.css" rel="stylesheet">
-  <?= isset($cssContent) ? $cssContent : null ?>
+  <?= isset($cssContent) ? filter_var($cssContent) : null ?>
 
   <!-- =======================================================
   * Template Name: iPortfolio - v2.0.2
@@ -83,7 +83,7 @@
 
 <!-- End Hero -->
 <main id="main">
-        <?= $content ?>
+        <?= filter_var($content) ?>
 </main>
 <!-- ======= Footer ======= -->
 <footer id="footer">
@@ -119,7 +119,7 @@
   <!-- Template Main JS File -->
   <script src="TemplateUser/assets/js/main.js"></script>
   
-  <?= isset($jsContent) ? $jsContent : null ?>
+  <?= isset($jsContent) ? filter_var($jsContent) : null ?>
 
     </body>
 </html>

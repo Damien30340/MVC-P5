@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="TemplateAdmin/css/style.min.css" rel="stylesheet">
-    <?= isset($cssContent) ? $cssContent : null ?>
+    <?= isset($cssContent) ? filter_var($cssContent) : null ?>
 </head>
 
 <body>
@@ -186,7 +186,7 @@
                                     <div id="sparklinedash"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-success"><?= $countPost ?></span></li>
+                                <li class="ml-auto"><span class="counter text-success"><?= filter_var($countPost )?></span></li>
                             </ul>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                                     <div id="sparklinedash2"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-purple"><?= $countComment ?></span></li>
+                                <li class="ml-auto"><span class="counter text-purple"><?= filter_var($countComment) ?></span></li>
                             </ul>
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                                     <div id="sparklinedash3"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ml-auto"><span class="counter text-info"><?= $countUser ?></span>
+                                <li class="ml-auto"><span class="counter text-info"><?= filter_var($countUser) ?></span>
                                 </li>
                             </ul>
                         </div>
@@ -218,7 +218,7 @@
                 </div>
 
 
-                <?= $content ?>
+                <?= filter_var($content) ?>
 
                 <!-- ============================================================== -->
                 <!-- End Container fluid  -->
@@ -259,7 +259,7 @@
         <script src="TemplateAdmin/plugins/bower_components/chartist/dist/chartist.min.js"></script>
         <script src="TemplateAdmin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
         <script src="TemplateAdmin/js/pages/dashboards/dashboard1.js"></script>
-        <?= isset($jsContent) ? $jsContent : null ?>
+        <?= isset($jsContent) ? filter_var($jsContent) : null ?>
 </body>
 
 </html>

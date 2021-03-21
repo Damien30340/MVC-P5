@@ -42,7 +42,7 @@ class Recaptcha
             $response = file_get_contents($url);
         }
 
-        if(empty($response) || is_null($response)){
+        if(empty($response) || $response === null){
             return false;
         }
 

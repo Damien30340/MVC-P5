@@ -23,7 +23,7 @@
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <!-- Custom styles for this template -->
   <link href="TemplateBlog/css/clean-blog.min.css" rel="stylesheet">
-  <?= isset($cssContent) ? $cssContent : null ?>
+  <?= isset($cssContent) ? filter_var($cssContent) : null ?>
 
 </head>
 
@@ -74,7 +74,7 @@
 
 
 
-  <?= $content ?>
+  <?= filter_var($content) ?>
 
 
 
@@ -122,7 +122,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="TemplateBlog/js/clean-blog.min.js"></script>
-  <?= isset($jsContent) ? $jsContent : null ?>
+  <?= isset($jsContent) ? filter_var($jsContent) : null ?>
 
 </body>
 

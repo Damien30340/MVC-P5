@@ -26,7 +26,7 @@ class BlogController extends BaseController
 
     public function contact()
     {
-        $captcha = new Recaptcha('6Lcx8koUAAAAAA_4NYPG8vUeCMfPJ-L05cEY-VVe', '6Lcx8koUAAAAACobzt-PsgKvvgROErNvFLxQ0P03');
+        $captcha = new Recaptcha('6LcvbYgaAAAAAN86QRv2hvTSN2Q1fynlTLKBIPux', '6LcvbYgaAAAAABPH50fMR0RRsPplxUJyfPUjv9tp');
         $this->addParam("captcha", $captcha);
         if (isset($this->profil) && $this->profil->getId() != 999) {
             $this->view("contact");
@@ -43,10 +43,10 @@ class BlogController extends BaseController
      */
     public function sendMessage($mail, $title, $content)
     {
-        $captcha = new Recaptcha('6Lcx8koUAAAAAA_4NYPG8vUeCMfPJ-L05cEY-VVe', '6Lcx8koUAAAAACobzt-PsgKvvgROErNvFLxQ0P03');
+        $captcha = new Recaptcha('6LcvbYgaAAAAAN86QRv2hvTSN2Q1fynlTLKBIPux', '6LcvbYgaAAAAABPH50fMR0RRsPplxUJyfPUjv9tp');
         $this->addParam("captcha", $captcha);
 
-        if ($captcha->isValid($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']) === false) {
+        if (!isset($_POST['g-recaptcha-response']) || $captcha->isValid(filter_input_array($_POST['g-recaptcha-response']), filter_input_array($_SERVER['REMOTE_ADDR'])) === false) {
             $this->view("errorMessage");
         } else {
             $mail = htmlspecialchars($mail);

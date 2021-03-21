@@ -14,7 +14,7 @@ class Post
     public function __construct()
     {
         $this->creation_date = new DateTime($this->creation_date);
-        is_null($this->dateUpdate)? null: $this->dateUpdate = new DateTime($this->dateUpdate);
+        ($this->dateUpdate === null)? null: $this->dateUpdate = new DateTime($this->dateUpdate);
     }
 
     public function getId()

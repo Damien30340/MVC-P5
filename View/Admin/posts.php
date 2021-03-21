@@ -47,7 +47,7 @@
                     </li>
                     <?php for ($p = 1; $p <= $nbrPage; $p++) { ?>
                         <li class="page-item <?= ($currentPage == $p)?"active" : "" ?>">
-                            <a class="page-link" href="Admin&Posts&<?= filter_var($p) ?>"><?= $p ?></a>
+                            <a class="page-link" href="Admin&Posts&<?= filter_var($p) ?>"><?= filter_var($p) ?></a>
                         </li>
                     <?php } ?>
                     <li class="page-item <?= (isset($currentPage) && $currentPage < $nbrPage) ? "" : "disabled" ?>">

@@ -21,7 +21,7 @@ class HomeController extends BaseController
      */
     public function home()
     {
-        $captcha = new Recaptcha('6Lcx8koUAAAAAA_4NYPG8vUeCMfPJ-L05cEY-VVe', '6Lcx8koUAAAAACobzt-PsgKvvgROErNvFLxQ0P03');
+        $captcha = new Recaptcha('6LcvbYgaAAAAAN86QRv2hvTSN2Q1fynlTLKBIPux', '6LcvbYgaAAAAABPH50fMR0RRsPplxUJyfPUjv9tp');
         $this->addParam("captcha", $captcha);
         $listFolio = $this->FolioManager->getAll();
         $this->addParam("listFolio", $listFolio);
