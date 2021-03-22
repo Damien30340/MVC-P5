@@ -43,7 +43,7 @@ class Comment
     public function getFormatDate()
     {
         $text = "Ajouté le : ";
-        $date = $this->creation_date->format('d/m/Y à H:i:s');
+        $date = $this->creation_date->format('d/m/Y à H:i');
         $author = " par " . $this->getAuthor();
         return $text . $date . $author;
     }

@@ -15,7 +15,8 @@
             </p>
           </a>
           <p class="post-meta">
-            <?= filter_var($post->getFormatDate()) ?>
+            <?= filter_var($post->getFormatDate()) ?><br>
+            <?= is_null($post->getdateUpdate()) ? "" : filter_var($post->getFormatDateUpdate()) ?>
           </p>
         </div>
         <hr>

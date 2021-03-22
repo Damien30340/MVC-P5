@@ -43,13 +43,13 @@ class Post
     {
         $text = 'Ajouté le : ';
         $author = ' par Damien';
-        $date = $this->creation_date->format('d/m/Y à H:i:s');
+        $date = $this->creation_date->format('d/m/Y à H:i');
         return $text . $date . $author;
     }
     public function getFormatDateUpdate()
     {
-        $text = 'Modifié le : ';
-        $date = $this->dateUpdate->format('d/m/Y à H:i:s');
+        $text = 'Dernière modification le : ';
+        $date = $this->dateUpdate->format('d/m/Y à H:i');
         return $text . $date;
     }
 
