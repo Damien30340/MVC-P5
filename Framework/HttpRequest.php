@@ -45,8 +45,8 @@ class HttpRequest
      */
     public function __construct($url = null, $method = null)
     {
-        $this->url = (is_null($url)) ? $_SERVER['REQUEST_URI'] : $url; // Recupération de l'url 
-        $this->method = (is_null($method)) ? $_SERVER['REQUEST_METHOD'] : $method; // Récupération de la méthode Get Post Put Delete
+        $this->url = ($url === null) ? $_SERVER['REQUEST_URI'] : $url; // Recupération de l'url 
+        $this->method = ($method === null) ? $_SERVER['REQUEST_METHOD'] : $method; // Récupération de la méthode Get Post Put Delete
         $this->param = array();
     }
 

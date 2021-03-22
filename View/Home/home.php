@@ -407,7 +407,7 @@
               <textarea class="form-control" id="content" name="content" required rows="3"></textarea>
             </div>
             <br>
-            <?= $captcha->html() ?>
+            <?= filter_var($captcha->html()) ?>
             <br>
             <div class="form-group">
               <button class="btn btn-primary" type="submit">Envoyer</button>

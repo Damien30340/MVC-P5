@@ -11,12 +11,12 @@
               <?= filter_var($post->getChapo()) ?>
             </h3>
             <p class="post-subtitle">
-              <?= substr($post->getContent(), 0, 200) . " ..." ?>
+              <?= filter_var($post->getShortContent()) . " ..." ?>
             </p>
           </a>
           <p class="post-meta">
             <?= filter_var($post->getFormatDate()) ?><br>
-            <?= is_null($post->getdateUpdate()) ? "" : filter_var($post->getFormatDateUpdate()) ?>
+            <?= ($post->getdateUpdate() === null) ? "" : filter_var($post->getFormatDateUpdate()) ?>
           </p>
         </div>
         <hr>

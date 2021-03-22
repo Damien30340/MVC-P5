@@ -52,5 +52,8 @@ class Post
         $date = $this->dateUpdate->format('d/m/Y à H:i');
         return $text . $date;
     }
+    public function getShortContent(){
+        return substr($this->getContent(), 0, 200);
+    }
 
 }
