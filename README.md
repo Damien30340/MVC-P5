@@ -28,3 +28,7 @@ Example file JSON : name file = Config.json in the folder Config !(Important)
 	"environement" : "dev"
 }
 ```
+
+### Recaptcha (option)
+The Recaptcha needs to be changed as it will not work. It is configured for a local test phase only on the author’s environment. It is useless to try to hijack the secret and public keys.
+
