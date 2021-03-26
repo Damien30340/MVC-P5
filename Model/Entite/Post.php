@@ -6,6 +6,7 @@ class Post
     private $id;
     private $title;
     private $chapo;
+    private $img;
     private $content;
     private $creation_date;
     private $dateUpdate;
@@ -31,6 +32,14 @@ class Post
     public function getContent()
     {
         return $this->content;
+    }
+    public function getImg(){
+        if(file_exists("TemplateBlog/img/img-post-" .$this->getId(). ".jpg")){
+            return $this->img = "TemplateBlog/img/img-post-" .$this->getId(). ".jpg";
+        } else {
+            return $this->img = null;
+        }
+        
     }
     public function getCreation_date()
     {
