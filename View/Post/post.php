@@ -1,5 +1,5 @@
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/post-bg.jpg')">
+  <header class="masthead" style="background-image: url('<?= filter_var($post->getImg()) ?>')">
       <div class="overlay"></div>
       <div class="container">
           <div class="row">
@@ -20,7 +20,6 @@
               <div class="col-lg-8 col-md-10 mx-auto">
                   <p><?= ($post->getdateUpdate() === null) ? "" : filter_var($post->getFormatDateUpdate()) ?></p>
                   <p><?= filter_var($post->getContent()) ?></p>
-
                   <p><?= filter_var($post->getFormatDate()) ?></p>
               </div>
           </div>

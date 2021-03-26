@@ -143,6 +143,7 @@ class PostController extends BaseController
      */
     public function Post($id)
     {
+        
         $count = $this->CommentManager->getCountById($id);
         $listComment = $this->CommentManager->getByIdPost($id);
         $post = $this->PostManager->getById($id);
