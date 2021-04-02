@@ -37,6 +37,3 @@ $config = json_decode($configFile); // Décodage du fichier .json
         $httpRequest->addParam($e);
         $httpRequest->run($config);
     }
-
-
-    ?>

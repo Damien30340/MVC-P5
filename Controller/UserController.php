@@ -123,18 +123,25 @@ class UserController extends BaseController
         if (!empty($mail) && !empty($password)) {
             $user = $this->UserManager->getByMail($mail);
             if ($user == false) {
+                $regexMail = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
                 $regexPass = "/^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])(?!.*[iIoO])\S{6,20}$/";
-                if ($password == $password2 && preg_match($regexPass, $password)) {
-                    $userMail = htmlspecialchars($mail);
-                    $userPassword = htmlspecialchars($password);
-                    $textCreate = "Votre compte est enregistré !";
-                    $hash = password_hash($userPassword, PASSWORD_DEFAULT);
-                    $this->UserManager->create($userMail, $hash);
-                    $this->addParam("textCreate", $textCreate);
-                    $this->view("Login");
+                if (preg_match($regexMail, $mail)) {
+                    if ($password == $password2 && preg_match($regexPass, $password)) {
+                        $userMail = htmlspecialchars($mail);
+                        $userPassword = htmlspecialchars($password);
+                        $textCreate = "Votre compte est enregistré !";
+                        $hash = password_hash($userPassword, PASSWORD_DEFAULT);
+                        $this->UserManager->create($userMail, $hash);
+                        $this->addParam("textCreate", $textCreate);
+                        $this->view("Login");
+                    } else {
+                        $errorPass = "Le mot de passe doit respecter les exigences de complexité";
+                        $this->addParam("error", $errorPass);
+                        $this->view('errorRegister');
+                    }
                 } else {
-                    $errorPass = "Le mot de passe doit respecter les exigences de complexité";
-                    $this->addParam("error", $errorPass);
+                    $mailNoValid = "Le format du mail n'est pas valide";
+                    $this->addParam("error", $mailNoValid);
                     $this->view('errorRegister');
                 }
             } else {
