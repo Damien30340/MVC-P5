@@ -31,6 +31,3 @@ Example file JSON : name file = Config.json in the folder Config !(Important)
 
 ### Recaptcha (option)
 The Recaptcha needs to be changed as it will not work. It is configured for a local test phase only on the author’s environment. It is useless to try to hijack the secret and public keys.
-
-### Codacy
-![alt text](https://github.com/Damien30340/MVC-P5/blob/main/Public/media/A_Codacy.png "Codacy A")
